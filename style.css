@@ -602,7 +602,6 @@ p {
 }
 
 .portfolio-card:hover {
-    transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
     border-color: var(--clr-primary);
 }
