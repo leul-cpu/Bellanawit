@@ -24,15 +24,46 @@ mobileLinks.forEach(link => {
     });
 });
 
-// --- Sticky Navbar ---
+// --- Sticky Navbar (Throttled) ---
 const navbar = document.querySelector('.navbar');
+let isScrolling = false;
+
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            isScrolling = false;
+        });
+        isScrolling = true;
     }
+}, { passive: true });
+
+// --- ScrollSpy (Active Nav Link) ---
+const sections = document.querySelectorAll('section, header');
+const navLinksArray = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+
+const scrollSpyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            let currentId = entry.target.id;
+            navLinksArray.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}, { rootMargin: '-20% 0px -80% 0px' });
+
+sections.forEach(section => {
+    if (section.id) scrollSpyObserver.observe(section);
 });
+
 
 // --- Scroll Animations (Intersection Observer) ---
 const observerOptions = {
@@ -55,34 +86,12 @@ document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
 });
 
 // --- Portfolio Data & Rendering ---
-const tiktokLinks = [
-    "https://www.tiktok.com/@bellanawit?_r=1&_t=ZS-95b3WJFwkbc", 
-    "https://vt.tiktok.com/ZSH79tNoc/",
-    "https://vt.tiktok.com/ZSH79TH7C/",
-    "https://vt.tiktok.com/ZSH79TBLJ/",
-    "https://vt.tiktok.com/ZSH799DXr/",
-    "https://vt.tiktok.com/ZSH79Ktkj/",
-    "https://vt.tiktok.com/ZSH7xjeqD/",
-    "https://vt.tiktok.com/ZSH7xFmUk/",
-    "https://vt.tiktok.com/ZSH7xUqgJ/",
-    "https://vt.tiktok.com/ZSH7xj87T/",
-    "https://vt.tiktok.com/ZSH7xSt37/",
-    "https://vt.tiktok.com/ZSH7xFtYn/",
-    "https://vt.tiktok.com/ZSH7x6KH3/",
-    "https://vt.tiktok.com/ZSH7xSPEA/",
-    "https://vt.tiktok.com/ZSH7xNDfS/",
-    "https://vt.tiktok.com/ZSH7x1PBY/",
-    "https://vt.tiktok.com/ZS9SssFwM/"
-];
-
-// Extract pure video links (filter out profile link)
-const videoLinks = tiktokLinks.filter(link => link.includes('/video/') || link.includes('vt.tiktok.com'));
-
 const portfolioGrid = document.getElementById('tiktok-grid');
 
 // Fetch thumbnails and render
 function renderPortfolio() {
     let thumbnails = typeof THUMBNAILS_DATA !== 'undefined' ? THUMBNAILS_DATA : {};
+    const videoLinks = Object.keys(thumbnails);
 
     videoLinks.forEach((link, index) => {
         let tag = "";
@@ -113,8 +122,15 @@ function renderPortfolio() {
             title = title.substring(0, 47) + '...';
         }
         
+        let thumbHTML = '';
+        if (thumbUrl) {
+            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb">`;
+        } else {
+            thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
+        }
+
         card.innerHTML = `
-            ${thumbUrl ? `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb" onerror="this.outerHTML='<div class=\\'video-thumb thumb-fallback\\'></div>'">` : `<div class="video-thumb thumb-fallback"></div>`}
+            ${thumbHTML}
             ${tag ? `<div class="card-tag">${tag}</div>` : ''}
             <div class="play-icon"><i class="ph-fill ph-play"></i></div>
             <div class="card-overlay">
@@ -123,13 +139,37 @@ function renderPortfolio() {
             </div>
         `;
         
+        if (thumbUrl) {
+            const img = card.querySelector('img');
+            if (img) {
+                img.addEventListener('error', function() {
+                    const fallback = document.createElement('div');
+                    fallback.className = 'video-thumb thumb-fallback';
+                    this.parentNode.replaceChild(fallback, this);
+                });
+            }
+        }
+        
         portfolioGrid.appendChild(card);
     });
 
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    
     // Observe new portfolio cards
-    document.querySelectorAll('.portfolio-card').forEach(el => {
+    portfolioCards.forEach(el => {
         observer.observe(el);
     });
+
+    // Initialize 3D Tilt effect
+    if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(portfolioCards, {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.15,
+            scale: 1.02
+        });
+    }
 }
 
 renderPortfolio();

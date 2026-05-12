@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bellanawit | Premium Event Promotion & Social Media Creator</title>
+    
+    <!-- SEO & Social Sharing Tags -->
+    <meta name="description" content="Creating eye-catching event promotion content and elevating personal brands through short-form video.">
+    <meta property="og:title" content="Bellanawit | Premium Event Promotion & Social Media Creator">
+    <meta property="og:description" content="Creating eye-catching event promotion content and elevating personal brands through short-form video.">
+    <meta property="og:image" content="profile.webp">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="profile.webp" type="image/webp">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +23,20 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@400;500;600&display=swap"
         rel="stylesheet">
     <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+    <script src="thumbnailsData.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Bellanawit<span>.</span></a>
+            <a href="#hero" class="logo">Bellanawit<span>.</span></a>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
@@ -67,7 +82,7 @@
             <div class="hero-visual fade-in">
                 <div class="profile-container">
                     <div class="glass-card profile-card">
-                        <img src="profile.png" alt="Bellanawit Profile" class="profile-image">
+                        <img src="profile.webp" alt="Bellanawit Profile" class="profile-image" fetchpriority="high">
                     </div>
                     <div class="floating-badges-row">
                         <div class="floating-badge badge-1">
@@ -176,6 +191,13 @@
             <div class="portfolio-grid" id="tiktok-grid">
                 <!-- Videos will be injected by JavaScript -->
             </div>
+            
+            <noscript>
+                <div class="contact-card glass-card fade-up mt-4">
+                    <p style="margin-bottom: 1rem;">Please enable JavaScript to view my full portfolio, or visit my TikTok channel directly:</p>
+                    <a href="https://www.tiktok.com/@bellanawit?_r=1&_t=ZS-95b3WJFwkbc" class="btn-primary" target="_blank" rel="noopener noreferrer">View Portfolio on TikTok</a>
+                </div>
+            </noscript>
         </div>
     </section>
 
@@ -217,12 +239,12 @@
                 </div>
 
                 <div class="social-links mt-4">
-                    <a href="https://www.instagram.com/belushhha?igsh=NnkzNzMyNTU0Y2Fk" class="social-icon"><i
+                    <a href="https://www.instagram.com/belushhha?igsh=NnkzNzMyNTU0Y2Fk" aria-label="Visit my Instagram" class="social-icon"><i
                             class="ph-fill ph-instagram-logo"></i></a>
-                    <a href="https://www.tiktok.com/@bellanawit?_r=1&_t=ZS-963wx6anRC8" class="social-icon"><i
+                    <a href="https://www.tiktok.com/@bellanawit?_r=1&_t=ZS-963wx6anRC8" aria-label="Visit my TikTok" class="social-icon"><i
                             class="ph-fill ph-tiktok-logo"></i></a>
                     <a href="https://www.linkedin.com/in/blen-agezwe-764673322?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-                        class="social-icon"><i class="ph-fill ph-linkedin-logo"></i></a>
+                        aria-label="Visit my LinkedIn" class="social-icon"><i class="ph-fill ph-linkedin-logo"></i></a>
                 </div>
             </div>
         </div>
@@ -237,8 +259,6 @@
     </footer>
 
 
-    <script src="thumbnailsData.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>

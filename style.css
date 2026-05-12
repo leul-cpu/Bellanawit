@@ -250,8 +250,13 @@ p {
     transition: var(--transition-smooth);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
     width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--clr-text-main);
 }
 
 .hamburger {
@@ -949,4 +954,22 @@ footer {
     .contact-card { padding: 2.5rem 1.25rem; }
     .contact-links { flex-direction: column; gap: 1rem; }
     .tool-chip { font-size: 0.85rem; padding: 0.5rem 1rem; }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .hero-orb {
+        animation: none !important;
+    }
 }
