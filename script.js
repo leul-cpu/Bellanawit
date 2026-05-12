@@ -160,14 +160,13 @@ function renderPortfolio() {
         observer.observe(el);
     });
 
-    // Initialize 3D Tilt effect
-    if (typeof VanillaTilt !== 'undefined') {
+    // Initialize 3D Tilt effect (Desktop Only)
+    if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
         VanillaTilt.init(portfolioCards, {
-            max: 10,
+            max: 5,
             speed: 400,
             glare: true,
-            "max-glare": 0.15,
-            scale: 1.02
+            "max-glare": 0.15
         });
     }
 }
