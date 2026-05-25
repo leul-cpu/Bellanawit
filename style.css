@@ -1050,3 +1050,8 @@ footer {
         transform: none !important;
     }
 }
+
+/* Micro-UX: Body scroll locking */
+.no-scroll {
+    overflow: hidden;
+}
