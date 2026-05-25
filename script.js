@@ -8,8 +8,11 @@ const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
 
 hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
+    const isActive = mobileMenu.classList.contains('active');
+    hamburger.setAttribute('aria-expanded', isActive);
+
     const icon = hamburger.querySelector('i');
-    if (mobileMenu.classList.contains('active')) {
+    if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
     } else {
         icon.classList.replace('ph-x', 'ph-list');
@@ -20,6 +23,7 @@ hamburger.addEventListener('click', () => {
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
     });
 });

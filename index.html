@@ -44,6 +44,7 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <nav class="navbar">
         <div class="nav-container">
@@ -54,12 +55,12 @@
                 <a href="#portfolio">Portfolio</a>
             </div>
             <a href="#contact" class="btn-primary desktop-cta">Let's Talk</a>
-            <button class="hamburger" aria-label="Toggle Menu">
+            <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
                 <i class="ph ph-list"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div class="mobile-menu">
+        <div class="mobile-menu" id="mobile-menu">
             <div class="mobile-nav-links">
                 <a href="#about" class="mobile-link">About</a>
                 <a href="#services" class="mobile-link">Services</a>
@@ -69,6 +70,7 @@
         </div>
     </nav>
 
+    <main id="main-content">
 
     <header id="hero" class="hero">
         <!-- Glowing Orbs Background -->
@@ -264,6 +266,7 @@
         </div>
     </section>
 
+    </main>
 
     <footer>
         <div class="container footer-content">
