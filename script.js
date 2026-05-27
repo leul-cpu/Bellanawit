@@ -10,6 +10,7 @@ hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
+    document.body.classList.toggle('no-scroll', isActive);
 
     const icon = hamburger.querySelector('i');
     if (isActive) {
@@ -19,10 +20,21 @@ hamburger.addEventListener('click', () => {
     }
 });
 
+// Close mobile menu on Escape key press
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+    }
+});
+
 // Close mobile menu on link click
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
         hamburger.setAttribute('aria-expanded', 'false');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
     });
@@ -136,10 +148,10 @@ function renderPortfolio() {
         card.innerHTML = `
             ${thumbHTML}
             ${tag ? `<div class="card-tag">${tag}</div>` : ''}
-            <div class="play-icon"><i class="ph-fill ph-play"></i></div>
+            <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
             <div class="card-overlay">
                 <h4>${title}</h4>
-                <span class="watch-btn">Watch Full Video <i class="ph ph-arrow-up-right"></i></span>
+                <span class="watch-btn">Watch Full Video <i class="ph ph-arrow-up-right" aria-hidden="true"></i></span>
             </div>
         `;
         

@@ -83,6 +83,10 @@ body {
     position: relative;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -310,10 +314,14 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .mobile-menu.active {
     right: 0;
+    visibility: visible;
+    pointer-events: all;
 }
 
 .mobile-nav-links {
