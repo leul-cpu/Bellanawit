@@ -10,23 +10,35 @@ hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
+    hamburger.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
     document.body.classList.toggle('no-scroll', isActive);
 
     const icon = hamburger.querySelector('i');
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
+        setTimeout(() => mobileLinks[0]?.focus(), 100);
     } else {
         icon.classList.replace('ph-x', 'ph-list');
     }
 });
 
-// Close mobile menu on Escape key press
+// Close mobile menu on Escape and handle focus trapping
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+    if (!mobileMenu.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+        hamburger.click();
+        hamburger.focus();
+    } else if (e.key === 'Tab') {
+        const focusable = [hamburger, ...mobileLinks];
+        const index = focusable.indexOf(document.activeElement);
+        if (e.shiftKey && index === 0) {
+            focusable[focusable.length - 1].focus();
+            e.preventDefault();
+        } else if (!e.shiftKey && (index === focusable.length - 1 || index === -1)) {
+            focusable[0].focus();
+            e.preventDefault();
+        }
     }
 });
 
@@ -145,11 +157,12 @@ function renderPortfolio() {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
 
+        card.setAttribute('aria-label', `Watch ${tag ? tag + ': ' : ''}${title} (opens in a new tab)`);
         card.innerHTML = `
             ${thumbHTML}
-            ${tag ? `<div class="card-tag">${tag}</div>` : ''}
+            ${tag ? `<div class="card-tag" aria-hidden="true">${tag}</div>` : ''}
             <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
-            <div class="card-overlay">
+            <div class="card-overlay" aria-hidden="true">
                 <h4>${title}</h4>
                 <span class="watch-btn">Watch Full Video <i class="ph ph-arrow-up-right" aria-hidden="true"></i></span>
             </div>
