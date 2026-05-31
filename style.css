@@ -99,6 +99,17 @@ body {
     overflow: hidden;
 }
 
+/* Micro-UX: Fix navbar click interception when menu is open */
+.no-scroll .navbar {
+    pointer-events: none;
+    background: transparent;
+}
+
+.no-scroll .navbar .logo,
+.no-scroll .navbar .hamburger {
+    pointer-events: auto;
+}
+
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
@@ -1072,7 +1083,3 @@ footer {
     }
 }
 
-/* Micro-UX: Body scroll locking */
-.no-scroll {
-    overflow: hidden;
-}

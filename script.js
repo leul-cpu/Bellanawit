@@ -8,49 +8,69 @@ const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
 
 let focusableElements = [];
 
-hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-    const isActive = mobileMenu.classList.contains('active');
+function toggleMenu() {
+    const isActive = !mobileMenu.classList.contains('active');
+    mobileMenu.classList.toggle('active', isActive);
     hamburger.setAttribute('aria-expanded', isActive);
     document.body.classList.toggle('no-scroll', isActive);
     const icon = hamburger.querySelector('i');
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
         hamburger.setAttribute('aria-label', 'Close Menu');
+        // Cache focusable elements when opening
+        focusableElements = [hamburger, ...mobileMenu.querySelectorAll('a, button')];
     } else {
         icon.classList.replace('ph-x', 'ph-list');
         hamburger.setAttribute('aria-label', 'Open Menu');
     }
-});
+}
 
-document.addEventListener('click', (e) => {
-    if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+function closeMenu() {
+    if (mobileMenu.classList.contains('active')) {
         mobileMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
         hamburger.setAttribute('aria-expanded', 'false');
         hamburger.setAttribute('aria-label', 'Open Menu');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+    }
+}
+
+hamburger.addEventListener('click', toggleMenu);
+
+document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
     }
 });
 
 // Close mobile menu on link click
 mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open Menu');
-        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
-    });
+    link.addEventListener('click', closeMenu);
 });
 
-// Close mobile menu on Escape key
+// Close mobile menu on Escape key & Focus Trapping
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+    if (!mobileMenu.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+        closeMenu();
+    }
+
+    if (e.key === 'Tab') {
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else { // Tab
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
     }
 });
 
@@ -156,7 +176,7 @@ function renderPortfolio() {
         
         let thumbHTML = '';
         if (thumbUrl) {
-            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb">`;
+            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb" loading="lazy" decoding="async">`;
         } else {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
