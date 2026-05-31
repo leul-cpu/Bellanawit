@@ -13,18 +13,23 @@ hamburger.addEventListener('click', () => {
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
     document.body.classList.toggle('no-scroll', isActive);
-
-
     const icon = hamburger.querySelector('i');
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
-
+        hamburger.setAttribute('aria-label', 'Close Menu');
     } else {
         icon.classList.replace('ph-x', 'ph-list');
+        hamburger.setAttribute('aria-label', 'Open Menu');
     }
 });
 
-
+document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open Menu');
+        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
     }
 });
 
@@ -155,9 +160,15 @@ function renderPortfolio() {
         } else {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
-
-
+        card.innerHTML = `
+            ${thumbHTML}
+            <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
+            ${tag ? `<div class="card-tag">${tag}</div>` : ''}
+            <div class="card-overlay">
+                <h4>${title}</h4>
+                <div class="watch-btn">Watch <i class="ph ph-arrow-right" aria-hidden="true"></i></div>
             </div>
+        `;
         
         if (thumbUrl) {
             const img = card.querySelector('img');
