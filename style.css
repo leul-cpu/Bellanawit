@@ -63,6 +63,18 @@
     top: 0;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 *:focus-visible {
     outline: 2px solid var(--clr-primary);
     outline-offset: 4px;
@@ -81,6 +93,22 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* Typography */
@@ -310,10 +338,14 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .mobile-menu.active {
     right: 0;
+    visibility: visible;
+    pointer-events: all;
 }
 
 .mobile-nav-links {

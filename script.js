@@ -6,17 +6,37 @@ const hamburger = document.querySelector('.hamburger');
 const mobileMenu = document.querySelector('.mobile-menu');
 const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
 
+let focusableElements = [];
+
 hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
-    document.body.classList.toggle('no-scroll', isActive);
 
     const icon = hamburger.querySelector('i');
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
+        // Cache focusable elements when menu opens
+        updateFocusableElements();
     } else {
         icon.classList.replace('ph-x', 'ph-list');
+    }
+});
+
+
+document.addEventListener('keydown', (e) => {
+    const isActive = mobileMenu.classList.contains('active');
+
+    if (!isActive) return;
+
+    if (e.key === 'Escape') {
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open Menu');
+        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+        hamburger.focus();
+
     }
 });
 
@@ -26,6 +46,7 @@ mobileLinks.forEach(link => {
         mobileMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
         hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open Menu');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
     });
 });
@@ -147,15 +168,8 @@ function renderPortfolio() {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
 
-        card.innerHTML = `
-            ${thumbHTML}
-            ${tag ? `<div class="card-tag">${tag}</div>` : ''}
-            <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
-            <div class="card-overlay">
-                <h4>${title}</h4>
-                <span class="watch-btn">Watch Full Video <i class="ph ph-arrow-up-right" aria-hidden="true"></i></span>
+
             </div>
-        `;
         
         if (thumbUrl) {
             const img = card.querySelector('img');
