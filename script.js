@@ -10,13 +10,44 @@ hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
+    hamburger.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
     document.body.classList.toggle('no-scroll', isActive);
 
     const icon = hamburger.querySelector('i');
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
+        // Cache focusable elements when menu opens
+        updateFocusableElements();
     } else {
         icon.classList.replace('ph-x', 'ph-list');
+    }
+});
+
+let focusableElements = [];
+function updateFocusableElements() {
+    focusableElements = [
+        hamburger,
+        ...mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')
+    ];
+}
+
+// Focus trapping
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab' && mobileMenu.classList.contains('active')) {
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else { // Tab
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
     }
 });
 
@@ -26,7 +57,9 @@ document.addEventListener('keydown', (e) => {
         mobileMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
         hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open Menu');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+        hamburger.focus();
     }
 });
 
@@ -36,6 +69,7 @@ mobileLinks.forEach(link => {
         mobileMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
         hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open Menu');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
     });
 });
@@ -145,13 +179,17 @@ function renderPortfolio() {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
 
+        card.setAttribute('aria-label', `Watch ${tag ? tag : 'Portfolio'} Video: ${title} (opens in a new tab)`);
+
         card.innerHTML = `
-            ${thumbHTML}
-            ${tag ? `<div class="card-tag">${tag}</div>` : ''}
-            <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
-            <div class="card-overlay">
-                <h4>${title}</h4>
-                <span class="watch-btn">Watch Full Video <i class="ph ph-arrow-up-right" aria-hidden="true"></i></span>
+            <div aria-hidden="true">
+                ${thumbHTML}
+                ${tag ? `<div class="card-tag">${tag}</div>` : ''}
+                <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
+                <div class="card-overlay">
+                    <h4>${title}</h4>
+                    <span class="watch-btn">Watch Full Video <i class="ph ph-arrow-up-right" aria-hidden="true"></i></span>
+                </div>
             </div>
         `;
         
