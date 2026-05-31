@@ -13,29 +13,16 @@ hamburger.addEventListener('click', () => {
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
 
+
     const icon = hamburger.querySelector('i');
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
-        // Cache focusable elements when menu opens
-        updateFocusableElements();
+
     } else {
         icon.classList.replace('ph-x', 'ph-list');
     }
 });
 
-
-document.addEventListener('keydown', (e) => {
-    const isActive = mobileMenu.classList.contains('active');
-
-    if (!isActive) return;
-
-    if (e.key === 'Escape') {
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open Menu');
-        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
-        hamburger.focus();
 
     }
 });
