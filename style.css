@@ -63,6 +63,18 @@
     top: 0;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 *:focus-visible {
     outline: 2px solid var(--clr-primary);
     outline-offset: 4px;
@@ -96,7 +108,6 @@ body {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
-    border-width: 0;
 }
 
 /* Typography */
@@ -1069,4 +1080,9 @@ footer {
     .social-icon:hover {
         transform: none !important;
     }
+}
+
+/* Micro-UX: Body scroll locking */
+.no-scroll {
+    overflow: hidden;
 }
