@@ -322,7 +322,7 @@ p {
     border-left: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 99;
+    z-index: 101; /* Above navbar */
     display: flex;
     align-items: center;
     justify-content: center;
