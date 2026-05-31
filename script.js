@@ -22,12 +22,14 @@ hamburger.addEventListener('click', () => {
     const icon = hamburger.querySelector('i');
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
+        // Cache focusable elements when menu opens
+        updateFocusableElements();
     } else {
         icon.classList.replace('ph-x', 'ph-list');
     }
 });
 
-// Accessibility: Focus Trapping & Escape Key
+
 document.addEventListener('keydown', (e) => {
     const isActive = mobileMenu.classList.contains('active');
 
@@ -40,23 +42,7 @@ document.addEventListener('keydown', (e) => {
         hamburger.setAttribute('aria-label', 'Open Menu');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
         hamburger.focus();
-    }
 
-    if (e.key === 'Tab' && focusableElements.length > 0) {
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (e.shiftKey) { // Shift + Tab
-            if (document.activeElement === firstElement) {
-                e.preventDefault();
-                lastElement.focus();
-            }
-        } else { // Tab
-            if (document.activeElement === lastElement) {
-                e.preventDefault();
-                firstElement.focus();
-            }
-        }
     }
 });
 
@@ -176,17 +162,8 @@ function renderPortfolio() {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
 
-        card.setAttribute('aria-label', `Watch ${tag ? tag + ': ' : ''}${title} (opens in a new tab)`);
 
-        card.innerHTML = `
-            ${thumbHTML}
-            ${tag ? `<div class="card-tag" aria-hidden="true">${tag}</div>` : ''}
-            <div class="play-icon" aria-hidden="true"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
-            <div class="card-overlay" aria-hidden="true">
-                <h4>${title}</h4>
-                <span class="watch-btn">Watch Full Video <i class="ph ph-arrow-up-right" aria-hidden="true"></i></span>
             </div>
-        `;
         
         if (thumbUrl) {
             const img = card.querySelector('img');
