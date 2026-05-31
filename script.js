@@ -12,12 +12,6 @@ hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
-    hamburger.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
-    document.body.classList.toggle('no-scroll', isActive);
-
-    if (isActive) {
-        focusableElements = [hamburger, ...mobileMenu.querySelectorAll('a, button')];
-    }
 
     const icon = hamburger.querySelector('i');
     if (isActive) {
@@ -55,6 +49,16 @@ mobileLinks.forEach(link => {
         hamburger.setAttribute('aria-label', 'Open Menu');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
     });
+});
+
+// Close mobile menu on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+    }
 });
 
 // --- Sticky Navbar (Throttled) ---
@@ -132,12 +136,6 @@ function renderPortfolio() {
         else if (index === 4) tag = "Most Viewed";
         else if (index === 8) tag = "Trending";
         
-        const card = document.createElement('a');
-        card.href = link;
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
-        card.className = 'portfolio-card glass-card fade-up stagger';
-        
         let thumbUrl = '';
         let title = `Event Promo Vol. ${index + 1}`;
         
@@ -154,6 +152,14 @@ function renderPortfolio() {
         if (title.length > 50) {
             title = title.substring(0, 47) + '...';
         }
+
+        const card = document.createElement('a');
+        card.href = link;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+        card.className = 'portfolio-card glass-card fade-up stagger';
+        card.setAttribute('aria-label', `Watch video: ${title} (opens in a new tab)`);
+
         
         let thumbHTML = '';
         if (thumbUrl) {
