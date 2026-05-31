@@ -12,6 +12,7 @@ hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     const isActive = mobileMenu.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isActive);
+    document.body.classList.toggle('no-scroll', isActive);
 
 
     const icon = hamburger.querySelector('i');
