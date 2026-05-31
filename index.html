@@ -59,16 +59,17 @@
                 <i class="ph ph-list" aria-hidden="true"></i>
             </button>
         </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
-            <div class="mobile-nav-links">
-                <a href="#about" class="mobile-link">About</a>
-                <a href="#services" class="mobile-link">Services</a>
-                <a href="#portfolio" class="mobile-link">Portfolio</a>
-                <a href="#contact" class="btn-primary mobile-cta">Let's Talk</a>
-            </div>
-        </div>
     </nav>
+
+    <!-- Mobile Menu (Moved out of navbar for better stacking context) -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div class="mobile-nav-links">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#services" class="mobile-link">Services</a>
+            <a href="#portfolio" class="mobile-link">Portfolio</a>
+            <a href="#contact" class="btn-primary mobile-cta">Let's Talk</a>
+        </div>
+    </div>
 
     <main id="main-content">
 

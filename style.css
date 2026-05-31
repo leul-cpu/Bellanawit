@@ -87,6 +87,15 @@ body {
     overflow: hidden;
 }
 
+/* Ensure navbar doesn't block menu interaction when open */
+.no-scroll .navbar {
+    background: transparent !important;
+    border-bottom: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -227,7 +236,7 @@ p {
 .navbar {
     position: fixed;
     top: 0; left: 0; width: 100%;
-    z-index: 100;
+    z-index: 1100; /* Above mobile menu overlay */
     transition: var(--transition-smooth);
     padding: 1.5rem 0;
 }
@@ -322,7 +331,7 @@ p {
     border-left: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 101; /* Above navbar */
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
