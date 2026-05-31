@@ -174,7 +174,7 @@ function renderPortfolio() {
         
         let thumbHTML = '';
         if (thumbUrl) {
-            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb">`;
+            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb" loading="lazy" decoding="async">`;
         } else {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
