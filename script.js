@@ -174,12 +174,14 @@ function renderPortfolio() {
         card.target = "_blank";
         card.rel = "noopener noreferrer";
         card.className = 'portfolio-card glass-card fade-up stagger';
-        card.setAttribute('aria-label', `Watch video: ${title} (opens in a new tab)`);
+
+        const ariaTitle = tag ? `${tag}: ${title}` : title;
+        card.setAttribute('aria-label', `Watch ${ariaTitle} (opens in a new tab)`);
 
         
         let thumbHTML = '';
         if (thumbUrl) {
-            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb">`;
+            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb" loading="lazy" decoding="async">`;
         } else {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
@@ -227,14 +229,25 @@ function renderPortfolio() {
 
 renderPortfolio();
 
-// --- Back to Top Button ---
+// --- Back to Top Button & Scroll Progress ---
 const backToTopBtn = document.getElementById('back-to-top');
+const progressCircle = backToTopBtn.querySelector('.progress-ring__circle');
 
 window.addEventListener('scroll', () => {
+    // Visibility toggle
     if (window.scrollY > 300) {
         backToTopBtn.classList.add('active');
     } else {
         backToTopBtn.classList.remove('active');
+    }
+
+    // Progress calculation
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+
+    if (progressCircle) {
+        progressCircle.style.strokeDashoffset = 100 - scrollPercent;
     }
 }, { passive: true });
 
