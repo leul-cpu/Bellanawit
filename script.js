@@ -17,6 +17,8 @@ hamburger.addEventListener('click', () => {
     if (isActive) {
         icon.classList.replace('ph-list', 'ph-x');
         hamburger.setAttribute('aria-label', 'Close Menu');
+        // Cache focusable elements for focus trapping
+        focusableElements = [hamburger, ...mobileMenu.querySelectorAll('a, button')];
     } else {
         icon.classList.replace('ph-x', 'ph-list');
         hamburger.setAttribute('aria-label', 'Open Menu');
@@ -44,13 +46,34 @@ mobileLinks.forEach(link => {
     });
 });
 
-// Close mobile menu on Escape key
+// Focus trapping and Escape key listener
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+    if (!mobileMenu.classList.contains('active')) return;
+
+    if (e.key === 'Tab') {
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
+            }
+        } else { // Tab
+            if (document.activeElement === lastElement) {
+                firstElement.focus();
+                e.preventDefault();
+            }
+        }
+    }
+
+    if (e.key === 'Escape') {
         mobileMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
         hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open Menu');
         hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+        hamburger.focus();
     }
 });
 
@@ -203,3 +226,21 @@ function renderPortfolio() {
 }
 
 renderPortfolio();
+
+// --- Back to Top Button ---
+const backToTopBtn = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.add('active');
+    } else {
+        backToTopBtn.classList.remove('active');
+    }
+}, { passive: true });
+
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});

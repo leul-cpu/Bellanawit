@@ -99,7 +99,6 @@ body {
     overflow: hidden;
 }
 
-
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -585,7 +584,8 @@ p {
     transition: var(--transition-smooth);
 }
 
-.channel-card:hover {
+.channel-card:hover,
+.channel-card:focus-visible {
     transform: translateY(-3px);
     border-color: var(--clr-primary);
 }
@@ -659,7 +659,8 @@ p {
     transition: var(--transition-fast);
 }
 
-.channel-card:hover .channel-arrow {
+.channel-card:hover .channel-arrow,
+.channel-card:focus-visible .channel-arrow {
     color: var(--clr-primary);
     transform: translateX(5px);
 }
@@ -684,7 +685,8 @@ p {
     border: var(--glass-border);
 }
 
-.portfolio-card:hover {
+.portfolio-card:hover,
+.portfolio-card:focus-visible {
     box-shadow: var(--shadow-hover);
     border-color: var(--clr-primary);
 }
@@ -709,7 +711,8 @@ p {
     font-size: 2rem;
 }
 
-.portfolio-card:hover .video-thumb {
+.portfolio-card:hover .video-thumb,
+.portfolio-card:focus-visible .video-thumb {
     opacity: 1;
     transform: scale(1.03);
 }
@@ -759,7 +762,8 @@ p {
     transition: var(--transition-fast);
 }
 
-.portfolio-card:hover .watch-btn {
+.portfolio-card:hover .watch-btn,
+.portfolio-card:focus-visible .watch-btn {
     color: var(--clr-primary);
 }
 
@@ -781,7 +785,8 @@ p {
     transition: var(--transition-smooth);
 }
 
-.portfolio-card:hover .play-icon {
+.portfolio-card:hover .play-icon,
+.portfolio-card:focus-visible .play-icon {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
@@ -854,7 +859,8 @@ p {
     transition: var(--transition-fast);
 }
 
-.contact-item:hover {
+.contact-item:hover,
+.contact-item:focus-visible {
     border-color: var(--clr-primary);
     transform: translateY(-2px);
 }
@@ -1063,10 +1069,13 @@ footer {
 @media (hover: none) {
     .glass-card:hover,
     .portfolio-card:hover,
+    .portfolio-card:focus-visible,
     .btn-primary:hover,
     .btn-secondary:hover,
     .channel-card:hover,
+    .channel-card:focus-visible,
     .contact-item:hover,
+    .contact-item:focus-visible,
     .social-icon:hover {
         transform: none !important;
     }
@@ -1075,4 +1084,54 @@ footer {
 /* Micro-UX: Body scroll locking */
 .no-scroll {
     overflow: hidden;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--clr-primary);
+    color: var(--clr-bg);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-hover);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition-smooth);
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--clr-primary-light);
+    transform: translateY(-5px);
+}
+
+.back-to-top:focus-visible {
+    outline: 2px solid var(--clr-primary);
+    outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.25rem;
+    }
 }
