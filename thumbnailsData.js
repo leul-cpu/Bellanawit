@@ -1,4 +1,8 @@
 const THUMBNAILS_DATA = {
+  "https://vt.tiktok.com/ZSQJv829J/": {
+    "thumb": "thumbnails/thumb_sheva_toys.jpg",
+    "title": "Coming soon 🤩 sheva toys 🧸 stay tuned #comingsoon #toystore #kids #bole #creatorsearchinsights"
+  },
   "https://vt.tiktok.com/ZSxNFcpvU/": {
     "thumb": "thumbnails/thumb_16.jpg",
     "title": "አልሚ ምርቶች በኤክስፖርት ስታንዳርድ የሚመረቱት የጤፍ ዱቄት፤ ቆሎ፤ ዳቦ ቆሎ፤ ሽሮ፤ በርበሬ፤ ቆጮ እንዲሁም  45 በላይ የተለያዩ ምርቶችን አምርቶ በሀገር ውስጥ ገበያ በተጨማሪም በአሜሪካ እንዲሁም በካናዳ በደምበኞቻችን ተወዳጅነትን አትርፏል::   በተጨማሪም በኢሮፕ, በአውስትራሊ እንዲሁም በተለያዩ የአለም ሀገራት ተደራሽነታችንን ለማስፋት ዝግጅታችንን አጠናቀን ጨርሰናል በመሆኑም አከፋፋዮች እንዲሁም አስመጭዎች ከኛ ጋር አብራችሁን እንድትሰሩ ጥሪያችን ነው:: WhatsApp 👇  +251 97 947 5653 Email 👇 almiproducts1@gmail.com Abaystrading@gmail.com"
