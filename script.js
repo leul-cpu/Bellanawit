@@ -198,12 +198,14 @@ function renderPortfolio() {
         card.target = "_blank";
         card.rel = "noopener noreferrer";
         card.className = 'portfolio-card glass-card fade-up stagger';
-        card.setAttribute('aria-label', `Watch video: ${title} (opens in a new tab)`);
+
+        const ariaTitle = tag ? `${tag}: ${title}` : title;
+        card.setAttribute('aria-label', `Watch ${ariaTitle} (opens in a new tab)`);
 
         
         let thumbHTML = '';
         if (thumbUrl) {
-            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb">`;
+            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb" loading="lazy" decoding="async">`;
         } else {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
@@ -251,7 +253,7 @@ function renderPortfolio() {
 
 renderPortfolio();
 
-// --- Back to Top Button Interaction ---
+
 backToTopBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
