@@ -77,20 +77,44 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// --- Sticky Navbar (Throttled) ---
+// --- Scroll Events Handling (Optimized) ---
 const navbar = document.querySelector('.navbar');
+const backToTopBtn = document.getElementById('back-to-top');
+const progressCircle = document.querySelector('.progress-ring__circle');
+
 let isScrolling = false;
+
+const handleScroll = () => {
+    const scrollY = window.scrollY;
+
+    // Navbar state
+    if (scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+
+    // Back to Top visibility
+    if (scrollY > 300) {
+        backToTopBtn.classList.add('active');
+    } else {
+        backToTopBtn.classList.remove('active');
+    }
+
+    // Scroll Progress Ring
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollHeight > 0) {
+        const scrollPercentage = (scrollY / scrollHeight) * 100;
+        const offset = 100 - scrollPercentage;
+        progressCircle.style.strokeDashoffset = offset;
+    }
+
+    isScrolling = false;
+};
 
 window.addEventListener('scroll', () => {
     if (!isScrolling) {
-        window.requestAnimationFrame(() => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            isScrolling = false;
-        });
+        window.requestAnimationFrame(handleScroll);
         isScrolling = true;
     }
 }, { passive: true });
@@ -229,27 +253,6 @@ function renderPortfolio() {
 
 renderPortfolio();
 
-// --- Back to Top Button & Scroll Progress ---
-const backToTopBtn = document.getElementById('back-to-top');
-const progressCircle = backToTopBtn.querySelector('.progress-ring__circle');
-
-window.addEventListener('scroll', () => {
-    // Visibility toggle
-    if (window.scrollY > 300) {
-        backToTopBtn.classList.add('active');
-    } else {
-        backToTopBtn.classList.remove('active');
-    }
-
-    // Progress calculation
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-
-    if (progressCircle) {
-        progressCircle.style.strokeDashoffset = 100 - scrollPercent;
-    }
-}, { passive: true });
 
 backToTopBtn.addEventListener('click', () => {
     window.scrollTo({
