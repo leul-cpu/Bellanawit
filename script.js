@@ -260,3 +260,33 @@ backToTopBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+// --- Copy to Clipboard Functionality ---
+const copyButtons = document.querySelectorAll('.copy-btn');
+
+copyButtons.forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const textToCopy = btn.getAttribute('data-copy');
+        const icon = btn.querySelector('i');
+        const originalClass = icon.className;
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+
+            // Visual feedback
+            icon.className = 'ph ph-fill ph-check-circle';
+            btn.classList.add('copy-success');
+
+            setTimeout(() => {
+                icon.className = originalClass;
+                btn.classList.remove('copy-success');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+            icon.className = 'ph ph-fill ph-x-circle';
+            setTimeout(() => {
+                icon.className = originalClass;
+            }, 2000);
+        }
+    });
+});
