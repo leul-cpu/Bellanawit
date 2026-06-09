@@ -83,6 +83,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -846,23 +847,53 @@ p {
     flex-wrap: wrap;
 }
 
+.contact-item-wrapper {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    background: var(--clr-surface-solid);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition-fast);
+    overflow: hidden;
+}
+
+.contact-item-wrapper:hover,
+.contact-item-wrapper:focus-within {
+    border-color: var(--clr-primary);
+    transform: translateY(-2px);
+}
+
 .contact-item {
     display: flex;
     align-items: center;
     gap: 1rem;
     text-decoration: none;
     color: var(--clr-text-main);
-    padding: 1rem 1.5rem;
-    background: var(--clr-surface-solid);
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: var(--transition-fast);
+    padding: 1rem 0.75rem 1rem 1.5rem;
+    flex-grow: 1;
 }
 
-.contact-item:hover,
-.contact-item:focus-visible {
-    border-color: var(--clr-primary);
-    transform: translateY(-2px);
+.copy-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: none;
+    color: var(--clr-text-muted);
+    padding: 0 1.25rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border-left: 1px solid rgba(255,255,255,0.05);
+}
+
+.copy-btn:hover {
+    color: var(--clr-primary);
+}
+
+.copy-btn.copy-success {
+    color: #4ade80 !important;
 }
 
 .contact-icon {
@@ -1130,7 +1161,15 @@ footer {
     width: 100%;
     height: 100%;
     transform: rotate(-90deg);
+    pointer-events: none;
+}
 
+.progress-ring__circle {
+    fill: transparent;
+    stroke: var(--clr-primary);
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset var(--transition-fast);
 }
 
 .back-to-top:focus-visible {

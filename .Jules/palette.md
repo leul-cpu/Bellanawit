@@ -9,3 +9,7 @@
 ## 2025-05-15 - Scroll Progress Feedback
 **Learning:** Adding a visual progress indicator to the "Back to Top" button provides non-intrusive feedback on the user's position within long-form content, enhancing the sense of control and orientation.
 **Action:** Use SVG with `pathLength="100"` and `stroke-dashoffset` for performant and simple scroll progress indicators.
+
+## 2026-06-09 - Accessible Clipboard Interactions
+**Learning:** For 'Copy to Clipboard' buttons, providing immediate visual feedback (swapping icons and colors) and using ':focus-within' on the parent container ensures that keyboard users maintain context and receive the same level of confirmation as mouse users.
+**Action:** Use a temporary success state with icon swaps and themed color changes (e.g., emerald green) for all clipboard-related actions.

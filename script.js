@@ -260,3 +260,26 @@ backToTopBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+// --- Copy to Clipboard ---
+const copyButtons = document.querySelectorAll('.copy-btn');
+
+copyButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const textToCopy = btn.getAttribute('data-copy');
+        const originalIcon = btn.querySelector('i').className;
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            btn.classList.add('copy-success');
+            btn.querySelector('i').className = 'ph ph-fill ph-check-circle';
+
+            setTimeout(() => {
+                btn.classList.remove('copy-success');
+                btn.querySelector('i').className = originalIcon;
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+        });
+    });
+});
