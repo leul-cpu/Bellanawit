@@ -103,7 +103,7 @@ const handleScroll = () => {
 
     // Scroll Progress Ring
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (scrollHeight > 0) {
+    if (scrollHeight > 0 && progressCircle) {
         const scrollPercentage = (scrollY / scrollHeight) * 100;
         const offset = 100 - scrollPercentage;
         progressCircle.style.strokeDashoffset = offset;
@@ -258,5 +258,36 @@ backToTopBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
+    });
+});
+
+// --- Copy to Clipboard ---
+const copyButtons = document.querySelectorAll('.copy-btn');
+
+copyButtons.forEach(btn => {
+    let timeoutId;
+    btn.addEventListener('click', async () => {
+        const textToCopy = btn.getAttribute('data-copy');
+        const icon = btn.querySelector('i');
+        const originalClasses = 'ph ph-copy';
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+
+            // Clear existing timeout if any
+            if (timeoutId) clearTimeout(timeoutId);
+
+            // Visual success state
+            btn.classList.add('copy-success');
+            icon.className = 'ph ph-fill ph-check-circle';
+
+            timeoutId = setTimeout(() => {
+                btn.classList.remove('copy-success');
+                icon.className = originalClasses;
+                timeoutId = null;
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
     });
 });
