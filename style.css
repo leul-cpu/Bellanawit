@@ -860,10 +860,48 @@ p {
     transition: var(--transition-fast);
 }
 
-.contact-item:hover,
-.contact-item:focus-visible {
+
+.contact-item-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--clr-surface-solid);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-fast);
+}
+
+.contact-item-wrapper:hover,
+.contact-item-wrapper:focus-within {
     border-color: var(--clr-primary);
     transform: translateY(-2px);
+}
+
+.contact-item-wrapper .contact-item {
+    border: none;
+    background: transparent;
+}
+
+.copy-btn {
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--clr-text-muted);
+    padding: 0 1rem;
+    height: 40px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.copy-btn:hover {
+    color: var(--clr-primary);
+}
+
+.copy-btn.copied {
+    color: #4ade80; /* Green success color */
 }
 
 .contact-icon {
@@ -1094,8 +1132,6 @@ footer {
     right: 2rem;
     width: 3.5rem;
     height: 3.5rem;
-    background: var(--clr-surface-solid);
-    color: var(--clr-text-main);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1120,7 +1156,7 @@ footer {
 }
 
 .back-to-top:hover {
-    color: var(--clr-primary);
+
     transform: translateY(-5px);
     border-color: var(--clr-primary);
 }
@@ -1134,11 +1170,7 @@ footer {
     transform: rotate(-90deg);
 }
 
-.progress-ring__circle {
-    stroke: var(--clr-primary);
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    transition: stroke-dashoffset 0.1s linear;
+.progress-ring__circle
 }
 
 .back-to-top:focus-visible {

@@ -10,6 +10,4 @@
 **Learning:** Adding a visual progress indicator to the "Back to Top" button provides non-intrusive feedback on the user's position within long-form content, enhancing the sense of control and orientation.
 **Action:** Use SVG with `pathLength="100"` and `stroke-dashoffset` for performant and simple scroll progress indicators.
 
-## 2025-05-16 - Prevent Fixed Navbar Obscuring Anchor Targets
-**Learning:** Fixed navigation bars can obscure the top of the content when using anchor links. Using `scroll-padding-top` on the `html` element ensures that the viewport lands at a comfortable distance below the navbar, keeping the target content visible.
-**Action:** Always check the height of fixed navigation components and apply matching `scroll-padding-top` to the document root to ensure clear target visibility for internal navigation.
+in
