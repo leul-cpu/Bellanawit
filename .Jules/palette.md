@@ -10,6 +10,4 @@
 **Learning:** Adding a visual progress indicator to the "Back to Top" button provides non-intrusive feedback on the user's position within long-form content, enhancing the sense of control and orientation.
 **Action:** Use SVG with `pathLength="100"` and `stroke-dashoffset` for performant and simple scroll progress indicators.
 
-## 2026-06-07 - Focus-Within for Compound Components
-**Learning:** When wrapping links and supplementary actions (like copy buttons) in a unified visual card, using `:focus-within` on the wrapper ensures the entire component provides high-contrast visual feedback regardless of which internal element is focused.
-**Action:** Use `:focus-within` to trigger container-level hover/focus styles (like border color or transforms) for better keyboard navigation clarity.
+in

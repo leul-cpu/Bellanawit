@@ -83,6 +83,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -1131,7 +1132,6 @@ footer {
     right: 2rem;
     width: 3.5rem;
     height: 3.5rem;
-    background: var(--clr-surface);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1156,7 +1156,7 @@ footer {
 }
 
 .back-to-top:hover {
-    background: var(--clr-surface-solid);
+
     transform: translateY(-5px);
     border-color: var(--clr-primary);
 }
@@ -1170,10 +1170,7 @@ footer {
     transform: rotate(-90deg);
 }
 
-.progress-ring__circle {
-    transition: stroke-dashoffset 0.1s linear;
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
+.progress-ring__circle
 }
 
 .back-to-top:focus-visible {
