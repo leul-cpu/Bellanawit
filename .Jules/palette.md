@@ -9,3 +9,7 @@
 ## 2025-05-15 - Scroll Progress Feedback
 **Learning:** Adding a visual progress indicator to the "Back to Top" button provides non-intrusive feedback on the user's position within long-form content, enhancing the sense of control and orientation.
 **Action:** Use SVG with `pathLength="100"` and `stroke-dashoffset` for performant and simple scroll progress indicators.
+
+## 2026-06-11 - Resilient Scroll-Driven Animations
+**Learning:** Scroll-driven animations that target specific DOM elements (like progress rings) should always include null checks. If the element is missing or malformed in the HTML, the entire scroll handler can fail, potentially breaking other critical scroll-dependent features like navbar transitions or "Back to Top" visibility.
+**Action:** Always wrap DOM manipulations inside throttled scroll listeners in conditional checks to ensure UI resilience.
