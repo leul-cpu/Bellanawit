@@ -217,7 +217,6 @@ function renderPortfolio() {
                 <h4>${title}</h4>
                 <div class="watch-btn">Watch <i class="ph ph-arrow-right" aria-hidden="true"></i></div>
             </div>
-        `;
         
         if (thumbUrl) {
             const img = card.querySelector('img');
@@ -261,26 +260,11 @@ backToTopBtn.addEventListener('click', () => {
     });
 });
 
-// --- Copy to Clipboard ---
-document.querySelectorAll('.copy-btn').forEach(button => {
-    button.addEventListener('click', async () => {
-        const textToCopy = button.getAttribute('data-copy');
-        const icon = button.querySelector('i');
-
         try {
             await navigator.clipboard.writeText(textToCopy);
 
-            // Visual feedback
-            button.classList.add('copied');
-            const originalIconClass = icon.className;
-            icon.className = 'ph-fill ph-check-circle'; // Use a filled check circle for better visibility
-
-            setTimeout(() => {
-                button.classList.remove('copied');
-                icon.className = originalIconClass;
-            }, 2000);
-        } catch (err) {
-            console.error('Failed to copy: ', err);
+            // Visual feedbackerr) {
+            console.error('Failed to copy:
         }
     });
 });
