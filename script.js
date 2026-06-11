@@ -103,7 +103,7 @@ const handleScroll = () => {
 
     // Scroll Progress Ring
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (scrollHeight > 0) {
+    if (scrollHeight > 0 && progressCircle) {
         const scrollPercentage = (scrollY / scrollHeight) * 100;
         const offset = 100 - scrollPercentage;
         progressCircle.style.strokeDashoffset = offset;
