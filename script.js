@@ -259,14 +259,5 @@ backToTopBtn.addEventListener('click', () => {
 
 // --- Copy to Clipboard ---
 
-
-        try {
-            await navigator.clipboard.writeText(textToCopy);
-
-
-            }, 2000);
-        } catch (err) {
-            console.error('Failed to copy: ', err);
-        }
     });
 });
