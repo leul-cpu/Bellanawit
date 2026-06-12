@@ -102,13 +102,7 @@ const handleScroll = () => {
     }
 
     // Scroll Progress Ring
-    if (progressCircle) {
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (scrollHeight > 0) {
-            const scrollPercentage = (scrollY / scrollHeight) * 100;
-            const offset = 100 - scrollPercentage;
-            progressCircle.style.strokeDashoffset = offset;
-        }
+
     }
 
     isScrolling = false;
@@ -260,5 +254,28 @@ backToTopBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
+    });
+});
+
+// --- Copy to Clipboard ---
+document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const textToCopy = btn.getAttribute('data-copy');
+        const icon = btn.querySelector('i');
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+
+            // Visual feedback
+            btn.classList.add('copied');
+            icon.classList.replace('ph-copy', 'ph-check');
+
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                icon.classList.replace('ph-check', 'ph-copy');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
     });
 });
