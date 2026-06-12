@@ -236,8 +236,9 @@ function renderPortfolio() {
         observer.observe(el);
     });
 
-    // Initialize 3D Tilt effect (Desktop Only)
-    if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
+    // Initialize 3D Tilt effect (Desktop Only & Non-touch)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768 && !isTouchDevice) {
         VanillaTilt.init(portfolioCards, {
             max: 5,
             speed: 400,
