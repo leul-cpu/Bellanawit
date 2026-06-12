@@ -848,8 +848,7 @@ p {
 }
 
 .contact-item-wrapper {
-    display: flex;
-    align-items: stretch;
+
     background: var(--clr-surface-solid);
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -857,11 +856,7 @@ p {
     overflow: hidden;
 }
 
-.contact-item-wrapper:hover,
-.contact-item-wrapper:focus-within {
-    border-color: var(--clr-primary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-soft);
+
 }
 
 .contact-item {
@@ -870,33 +865,23 @@ p {
     gap: 1rem;
     text-decoration: none;
     color: var(--clr-text-main);
-    padding: 1rem 1.5rem;
+
     flex-grow: 1;
     transition: var(--transition-fast);
 }
 
 .copy-btn {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.02);
     border: none;
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--clr-text-muted);
-    padding: 0 1.2rem;
+
     cursor: pointer;
     transition: var(--transition-fast);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-}
 
-.copy-btn:hover,
-.copy-btn:focus-visible {
-    color: var(--clr-primary);
-    background: rgba(197, 163, 101, 0.05);
-}
-
-.copy-btn.copied {
-    color: #4ade80;
 }
 
 .contact-icon {
@@ -1158,17 +1143,8 @@ footer {
     width: 100%;
     height: 100%;
     transform: rotate(-90deg);
-    pointer-events: none;
-}
 
-.progress-ring__track {
-    stroke: rgba(255, 255, 255, 0.05);
-}
 
-.progress-ring__circle {
-    transition: stroke-dashoffset 0.1s linear;
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
 }
 
 .back-to-top:focus-visible {
