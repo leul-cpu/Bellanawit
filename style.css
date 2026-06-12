@@ -1205,13 +1205,7 @@ footer {
     width: 100%;
     height: 100%;
     transform: rotate(-90deg);
-    pointer-events: none;
-}
 
-.progress-ring__circle {
-    transition: stroke-dashoffset 0.1s linear;
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
 }
 
 .back-to-top:focus-visible {
