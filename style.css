@@ -847,25 +847,14 @@ p {
     flex-wrap: wrap;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    color: var(--clr-text-main);
-    padding: 1rem 1.5rem;
-    background: var(--clr-surface-solid);
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: var(--transition-fast);
-}
 .contact-item-wrapper {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     background: var(--clr-surface-solid);
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition-fast);
+    overflow: hidden;
 }
 
 .contact-item-wrapper:hover,
@@ -881,41 +870,9 @@ p {
     gap: 1rem;
     text-decoration: none;
     color: var(--clr-text-main);
-    padding: 1rem 1rem 1rem 1.5rem;
+    padding: 1rem 1.5rem;
     flex-grow: 1;
-}
-
-.copy-btn {
-    background: transparent;
-    border: none;
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--clr-text-muted);
-    padding: 1rem;
-    cursor: pointer;
     transition: var(--transition-fast);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0 8px 8px 0;
-}
-
-.copy-btn:hover,
-.copy-btn:focus-visible {
-    color: var(--clr-primary);
-    background: rgba(197, 163, 101, 0.05);
-}
-
-.copy-btn i {
-    font-size: 1.2rem;
-}
-
-.copy-success {
-    color: #4ade80 !important;
-}
-
-.contact-item-wrapper .contact-item {
-    border: none;
-    background: transparent;
 }
 
 .copy-btn {
@@ -923,8 +880,7 @@ p {
     border: none;
     border-left: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--clr-text-muted);
-    padding: 0 1rem;
-    height: 40px;
+    padding: 0 1.2rem;
     cursor: pointer;
     transition: var(--transition-fast);
     display: flex;
@@ -933,12 +889,14 @@ p {
     font-size: 1.1rem;
 }
 
-.copy-btn:hover {
+.copy-btn:hover,
+.copy-btn:focus-visible {
     color: var(--clr-primary);
+    background: rgba(197, 163, 101, 0.05);
 }
 
 .copy-btn.copied {
-    color: #4ade80; /* Green success color */
+    color: #4ade80;
 }
 
 .contact-icon {
@@ -1157,11 +1115,6 @@ footer {
     }
 }
 
-/* Micro-UX: Body scroll locking */
-.no-scroll {
-    overflow: hidden;
-}
-
 /* Back to Top Button */
 .back-to-top {
     position: fixed;
@@ -1206,6 +1159,10 @@ footer {
     height: 100%;
     transform: rotate(-90deg);
     pointer-events: none;
+}
+
+.progress-ring__track {
+    stroke: rgba(255, 255, 255, 0.05);
 }
 
 .progress-ring__circle {
