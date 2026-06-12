@@ -1083,7 +1083,13 @@ footer {
     .section-title { font-size: 1.6rem; }
     .services-grid { grid-template-columns: 1fr; }
     .about-stats { grid-template-columns: 1fr; }
-    .portfolio-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .portfolio-card { aspect-ratio: 3 / 4; }
+    .portfolio-card .card-overlay { padding: 1.5rem 0.75rem 0.75rem; }
+    .portfolio-card .card-overlay h4 { font-size: 0.85rem; }
+    .portfolio-card .card-overlay .card-desc { font-size: 0.7rem; }
+    .portfolio-card .card-tag { top: 0.5rem; left: 0.5rem; font-size: 0.55rem; padding: 0.15rem 0.35rem; }
+    .portfolio-card .play-icon { width: 36px; height: 36px; font-size: 0.9rem; right: 0.75rem; top: 45%; }
     .channel-card { padding: 1rem; }
     .contact-card { padding: 2.5rem 1.25rem; }
     .contact-links { flex-direction: column; gap: 1rem; }
