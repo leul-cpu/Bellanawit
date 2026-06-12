@@ -891,7 +891,7 @@ p {
     color: var(--clr-text-muted);
     padding: 0 1.2rem;
     cursor: pointer;
-    transition: var(--transition-fast);
+    transition: var(--transition-smooth);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -901,6 +901,10 @@ p {
 .copy-btn:hover {
     background: rgba(197, 163, 101, 0.1);
     color: var(--clr-primary);
+}
+
+.copy-btn:active {
+    transform: scale(0.92);
 }
 
 .copy-btn.copied {

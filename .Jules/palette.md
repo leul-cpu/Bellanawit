@@ -10,4 +10,7 @@
 **Learning:** Adding a visual progress indicator to the "Back to Top" button provides non-intrusive feedback on the user's position within long-form content, enhancing the sense of control and orientation.
 **Action:** Use SVG with `pathLength="100"` and `stroke-dashoffset` for performant and simple scroll progress indicators.
 
+## 2026-06-12 - Accessible Clipboard Feedback
+**Learning:** Providing auditory feedback for clipboard operations requires a combination of `aria-live` regions and temporary `aria-label` updates. To prevent state corruption (stuck labels) during rapid interactions, capture original attribute values outside the event listener scope.
+**Action:** Always store original UI states as constants when implementing temporary feedback loops to ensure reliable restoration.
 
