@@ -102,7 +102,11 @@ const handleScroll = () => {
     }
 
     // Scroll Progress Ring
-
+    if (progressCircle) {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressCircle.style.strokeDashoffset = 100 - scrollPercent;
     }
 
     isScrolling = false;
@@ -169,12 +173,12 @@ function renderPortfolio() {
     videoLinks.forEach((link, index) => {
         let tag = "";
         if (index === 0) tag = "Featured";
-        else if (index === 4) tag = "Most Viewed";
-        else if (index === 8) tag = "Trending";
-        
+        else if (index === 1) tag = "Trending";
+        else if (index === 2) tag = "Most Viewed";
+
         let thumbUrl = '';
         let title = `Event Promo Vol. ${index + 1}`;
-        
+
         if (thumbnails[link]) {
             if (typeof thumbnails[link] === 'object') {
                 thumbUrl = thumbnails[link].thumb || '';
@@ -183,7 +187,7 @@ function renderPortfolio() {
                 thumbUrl = thumbnails[link];
             }
         }
-        
+
         // Truncate title if it's too long
         if (title.length > 50) {
             title = title.substring(0, 47) + '...';
@@ -198,7 +202,7 @@ function renderPortfolio() {
         const ariaTitle = tag ? `${tag}: ${title}` : title;
         card.setAttribute('aria-label', `Watch ${ariaTitle} (opens in a new tab)`);
 
-        
+
         let thumbHTML = '';
         if (thumbUrl) {
             thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb" loading="lazy" decoding="async">`;
@@ -207,30 +211,30 @@ function renderPortfolio() {
         }
         card.innerHTML = `
             ${thumbHTML}
-            <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
             ${tag ? `<div class="card-tag">${tag}</div>` : ''}
             <div class="card-overlay">
                 <h4>${title}</h4>
-                <div class="watch-btn">Watch <i class="ph ph-arrow-right" aria-hidden="true"></i></div>
+                <span class="card-desc">Watch on TikTok</span>
             </div>
+            <div class="play-icon"><i class="ph-fill ph-play" aria-hidden="true"></i></div>
         `;
-        
+
         if (thumbUrl) {
             const img = card.querySelector('img');
             if (img) {
-                img.addEventListener('error', function() {
+                img.addEventListener('error', function () {
                     const fallback = document.createElement('div');
                     fallback.className = 'video-thumb thumb-fallback';
                     this.parentNode.replaceChild(fallback, this);
                 });
             }
         }
-        
+
         portfolioGrid.appendChild(card);
     });
 
     const portfolioCards = document.querySelectorAll('.portfolio-card');
-    
+
     // Observe new portfolio cards
     portfolioCards.forEach(el => {
         observer.observe(el);
@@ -259,6 +263,24 @@ backToTopBtn.addEventListener('click', () => {
 });
 
 // --- Copy to Clipboard ---
-
+const copyBtns = document.querySelectorAll('.copy-btn');
+copyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const textToCopy = btn.getAttribute('data-copy');
+        if (textToCopy) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.replace('ph-copy', 'ph-check');
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        icon.classList.replace('ph-check', 'ph-copy');
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
     });
 });
