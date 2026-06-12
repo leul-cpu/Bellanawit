@@ -258,21 +258,12 @@ backToTopBtn.addEventListener('click', () => {
 });
 
 // --- Copy to Clipboard ---
-document.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-        const textToCopy = btn.getAttribute('data-copy');
-        const icon = btn.querySelector('i');
+
 
         try {
             await navigator.clipboard.writeText(textToCopy);
 
-            // Visual feedback
-            btn.classList.add('copied');
-            icon.classList.replace('ph-copy', 'ph-check');
 
-            setTimeout(() => {
-                btn.classList.remove('copied');
-                icon.classList.replace('ph-check', 'ph-copy');
             }, 2000);
         } catch (err) {
             console.error('Failed to copy: ', err);
