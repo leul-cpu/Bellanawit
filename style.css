@@ -83,6 +83,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -871,13 +872,22 @@ p {
     flex-grow: 1;
     transition: var(--transition-fast);
 }
+.contact-item-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--clr-surface-solid);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-fast);
+}
+
 
 .copy-btn {
     background: transparent;
     border: none;
     border-left: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--clr-text-muted);
-    padding: 0 1.25rem;
+
     cursor: pointer;
     transition: var(--transition-fast);
     display: flex;
@@ -888,11 +898,7 @@ p {
 
 .copy-btn:hover {
     color: var(--clr-primary);
-    background: rgba(255, 255, 255, 0.02);
-}
 
-.copy-btn.copy-success {
-    color: #4ade80; /* Emerald Green */
 }
 
 .contact-icon {
@@ -1123,7 +1129,6 @@ footer {
     right: 2rem;
     width: 3.5rem;
     height: 3.5rem;
-
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1148,7 +1153,7 @@ footer {
 }
 
 .back-to-top:hover {
-
+    background: rgba(197, 163, 101, 0.1);
     transform: translateY(-5px);
     border-color: var(--clr-primary);
 }
