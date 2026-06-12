@@ -264,7 +264,10 @@ backToTopBtn.addEventListener('click', () => {
 
 // --- Copy to Clipboard ---
 const copyBtns = document.querySelectorAll('.copy-btn');
+const copyAnnouncement = document.getElementById('copy-announcement');
+
 copyBtns.forEach(btn => {
+    const originalLabel = btn.getAttribute('aria-label');
     btn.addEventListener('click', () => {
         const textToCopy = btn.getAttribute('data-copy');
         if (textToCopy) {
@@ -273,14 +276,16 @@ copyBtns.forEach(btn => {
                 if (icon) {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
+                    btn.setAttribute('aria-label', `${textToCopy} Copied!`);
+                    if (copyAnnouncement) copyAnnouncement.textContent = `${originalLabel} copied`;
                     setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
+                        btn.setAttribute('aria-label', originalLabel);
+                        if (copyAnnouncement) copyAnnouncement.textContent = '';
                     }, 2000);
                 }
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
+            }).catch(err => console.error('Failed to copy: ', err));
         }
     });
 });
