@@ -352,6 +352,11 @@ p {
     color: var(--clr-text-main);
     padding: 1rem 2rem;
     display: inline-block;
+    transition: var(--transition-fast);
+}
+
+.mobile-link.active {
+    color: var(--clr-primary);
 }
 
 /* Hero Section */
@@ -1129,6 +1134,7 @@ footer {
     .channel-card:focus-visible,
     .contact-item:hover,
     .contact-item:focus-visible,
+    .tool-chip:hover,
     .social-icon:hover {
         transform: none !important;
     }
@@ -1183,7 +1189,7 @@ footer {
 .progress-ring__circle {
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
-    transition: stroke-dashoffset 0.1s ease;
+    transition: stroke-dashoffset 0.1s linear;
 }
 
 .back-to-top:focus-visible {
