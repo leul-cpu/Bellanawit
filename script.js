@@ -5,16 +5,16 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const hamburger = document.querySelector('.hamburger');
 const mobileMenu = document.querySelector('.mobile-menu');
 const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
+const logo = document.querySelector('.logo');
 
 let focusableElements = [];
 
-hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-    const isActive = mobileMenu.classList.contains('active');
-    hamburger.setAttribute('aria-expanded', isActive);
-    document.body.classList.toggle('no-scroll', isActive);
+function toggleMenu(isOpen) {
+    mobileMenu.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('no-scroll', isOpen);
     const icon = hamburger.querySelector('i');
-    if (isActive) {
+    if (isOpen) {
         icon.classList.replace('ph-list', 'ph-x');
         hamburger.setAttribute('aria-label', 'Close Menu');
         // Cache focusable elements for focus trapping
@@ -23,28 +23,38 @@ hamburger.addEventListener('click', () => {
         icon.classList.replace('ph-x', 'ph-list');
         hamburger.setAttribute('aria-label', 'Open Menu');
     }
+}
+
+hamburger.addEventListener('click', () => {
+    const isActive = mobileMenu.classList.contains('active');
+    toggleMenu(!isActive);
 });
 
 document.addEventListener('click', (e) => {
     if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open Menu');
-        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+        toggleMenu(false);
+        hamburger.focus();
     }
 });
 
 // Close mobile menu on link click
-mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open Menu');
-        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+if (logo) {
+    [...mobileLinks, logo].forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                toggleMenu(false);
+            }
+        });
     });
-});
+} else {
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                toggleMenu(false);
+            }
+        });
+    });
+}
 
 // Focus trapping and Escape key listener
 document.addEventListener('keydown', (e) => {
@@ -68,11 +78,7 @@ document.addEventListener('keydown', (e) => {
     }
 
     if (e.key === 'Escape') {
-        mobileMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open Menu');
-        hamburger.querySelector('i').classList.replace('ph-x', 'ph-list');
+        toggleMenu(false);
         hamburger.focus();
     }
 });
