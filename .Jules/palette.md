@@ -14,10 +14,4 @@
 **Learning:** Providing auditory feedback for clipboard operations requires a combination of `aria-live` regions and temporary `aria-label` updates. To prevent state corruption (stuck labels) during rapid interactions, capture original attribute values outside the event listener scope.
 **Action:** Always store original UI states as constants when implementing temporary feedback loops to ensure reliable restoration.
 
-## 2025-05-16 - Neutralizing Sticky Hover on Touch
-**Learning:** Elements with CSS `transform` on `:hover` (like cards or chips) often remain in their hovered state after a tap on mobile devices. This "sticky hover" can lead to a cluttered or broken-looking interface.
-**Action:** Use the `@media (hover: none)` media query to neutralize `transform` and other hover-only effects for touch devices while maintaining focus-visible accessibility.
 
-## 2025-05-16 - Natural Language Clipboard Feedback
-**Learning:** Generic clipboard feedback like "Label copied" can sound robotic and repetitive. Refining the announcement to remove action verbs (like "Copy") and adding context ("to clipboard") provides a more human and accessible confirmation.
-**Action:** Use string manipulation to clean up button labels before using them in live region announcements for a more polished auditory experience.
