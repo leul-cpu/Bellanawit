@@ -279,10 +279,7 @@ copyBtns.forEach(btn => {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
                     btn.setAttribute('aria-label', `${textToCopy} Copied!`);
-                    if (copyAnnouncement) {
-                        const accessibleItem = originalLabel.replace('Copy ', '');
-                        copyAnnouncement.textContent = `${accessibleItem} copied to clipboard`;
-                    }
+
                     setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
