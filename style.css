@@ -304,11 +304,13 @@ p {
 }
 
 .nav-links a:hover::after,
-.nav-links a.active::after {
+.nav-links a.active::after,
+.nav-links a[aria-current="page"]::after {
     width: 100%;
 }
 
-.nav-links a.active {
+.nav-links a.active,
+.nav-links a[aria-current="page"] {
     color: var(--clr-text-main);
 }
 
@@ -362,6 +364,12 @@ p {
     color: var(--clr-text-main);
     padding: 1rem 2rem;
     display: inline-block;
+    transition: color var(--transition-fast);
+}
+
+.mobile-link.active,
+.mobile-link[aria-current="page"] {
+    color: var(--clr-primary);
 }
 
 /* Hero Section */
