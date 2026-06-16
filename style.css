@@ -100,6 +100,16 @@ body {
     overflow: hidden;
 }
 
+.no-scroll .navbar {
+    pointer-events: none;
+    background: transparent;
+}
+
+.no-scroll .navbar .hamburger,
+.no-scroll .navbar .logo {
+    pointer-events: auto;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -1180,7 +1190,12 @@ footer {
     pointer-events: none;
 }
 
+.progress-ring__track {
+    stroke: rgba(197, 163, 101, 0.1);
+}
+
 .progress-ring__circle {
+    stroke: var(--clr-primary);
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
     transition: stroke-dashoffset 0.1s ease;
