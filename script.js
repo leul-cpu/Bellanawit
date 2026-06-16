@@ -285,7 +285,7 @@ copyBtns.forEach(btn => {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
                     btn.setAttribute('aria-label', `${textToCopy} Copied!`);
-                    if (copyAnnouncement) copyAnnouncement.textContent = `${originalLabel.replace('Copy ', '')} copied to clipboard`;
+
                     setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
