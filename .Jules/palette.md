@@ -14,3 +14,7 @@
 **Learning:** Providing auditory feedback for clipboard operations requires a combination of `aria-live` regions and temporary `aria-label` updates. To prevent state corruption (stuck labels) during rapid interactions, capture original attribute values outside the event listener scope.
 **Action:** Always store original UI states as constants when implementing temporary feedback loops to ensure reliable restoration.
 
+
+## 2026-06-20 - Consistent Group Animations
+**Learning:** When using scroll-triggered entrance animations for related data points (like stat cards), ensuring *all* elements in the group share the same animation classes (.fade-up.stagger) prevents disjointed visual states where some elements appear static while others animate.
+**Action:** Always audit groups of related components to ensure uniform application of entrance animation tokens.
