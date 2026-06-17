@@ -879,7 +879,7 @@ p {
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition-fast);
-    overflow: hidden;
+    position: relative;
 }
 
 .contact-item-wrapper:hover {
@@ -895,12 +895,14 @@ p {
     padding: 1.2rem;
     flex-grow: 1;
     transition: var(--transition-fast);
+    border-radius: 8px 0 0 8px;
 }
 
 .copy-btn {
     background: rgba(255, 255, 255, 0.02);
     border: none;
     border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0 8px 8px 0;
     color: var(--clr-text-muted);
     padding: 0 1.2rem;
     cursor: pointer;
@@ -922,6 +924,28 @@ p {
 
 .copy-btn.copied {
     color: #10b981;
+}
+
+.copy-btn.copied::before {
+    content: 'Copied!';
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: #10b981;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    pointer-events: none;
+    animation: tooltipFade 2s ease-in-out forwards;
+}
+
+@keyframes tooltipFade {
+    0% { opacity: 0; transform: translateY(10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
 }
 
 .contact-icon {
@@ -1167,6 +1191,7 @@ footer {
     visibility: hidden;
     transform: translateY(20px);
     transition: all var(--transition-smooth);
+    background: var(--clr-surface);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.05);
