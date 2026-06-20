@@ -18,10 +18,4 @@
 **Learning:** Floating action buttons with thin progress rings (like "Back to Top") require an explicit background color to maintain visibility across varying section backgrounds. Additionally, contextual tooltips (like "Copied!" badges) fail if parent containers use `overflow: hidden`; layout aesthetics should be maintained via child border-radii instead.
 **Action:** Always verify floating UI contrast against all site sections and prefer semantic radius application over overflow clipping when using relative-positioned children.
 
-## 2026-02-14 - Focus Redirection in Mobile Navigation
-**Learning:** For mobile menu overlays, automatically moving focus to the first interactive link upon opening significantly reduces the number of keystrokes for keyboard and screen reader users. However, a small delay (e.g., 100ms) may be needed to ensure the focus transition doesn't interrupt CSS entrance animations.
-**Action:** Implement programmatic focus management for modal-like overlays, ensuring the first meaningful element is focused after a short delay.
 
-## 2026-02-14 - Balancing Focusability and Tab Order
-**Learning:** While it is tempting to make all visual chips focusable to show hover effects, adding `tabindex="0"` to non-interactive elements (like skill tags) clutters the tab order and confuses users who expect an action. It is better to reserve focus for truly interactive components while maintaining visual parity via `:focus-within` on parent containers.
-**Action:** Avoid making purely decorative or informational elements focusable; use parent container focus states to trigger related visual highlights instead.
