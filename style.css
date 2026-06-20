@@ -384,6 +384,21 @@ p {
     gap: 2rem;
 }
 
+.mobile-link,
+.mobile-cta {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-smooth), transform var(--transition-smooth),
+        color var(--transition-fast);
+    transition-delay: inherit;
+}
+
+.mobile-menu.active .mobile-link,
+.mobile-menu.active .mobile-cta {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .mobile-link {
     font-family: var(--font-heading);
     font-size: 1.5rem;
@@ -391,7 +406,6 @@ p {
     text-decoration: none;
     color: var(--clr-text-muted);
     padding: 1rem 2rem;
-    transition: var(--transition-fast);
 }
 
 .mobile-link:hover,
