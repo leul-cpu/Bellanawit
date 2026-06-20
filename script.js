@@ -19,6 +19,11 @@ function toggleMenu(isOpen) {
         hamburger.setAttribute('aria-label', 'Close Menu');
         // Cache focusable elements for focus trapping
         focusableElements = [hamburger, ...mobileMenu.querySelectorAll('a, button')];
+        // Move focus to the first mobile link for better UX
+        setTimeout(() => {
+            const firstLink = mobileMenu.querySelector('.mobile-link');
+            if (firstLink) firstLink.focus();
+        }, 100);
     } else {
         icon.classList.replace('ph-x', 'ph-list');
         hamburger.setAttribute('aria-label', 'Open Menu');
@@ -207,13 +212,15 @@ function renderPortfolio() {
         card.rel = "noopener noreferrer";
         card.className = 'portfolio-card glass-card fade-up stagger';
 
-        const ariaTitle = tag ? `${tag}: ${title}` : title;
+        const fullTitle = thumbnails[link] && typeof thumbnails[link] === 'object' ? thumbnails[link].title : title;
+        const ariaTitle = tag ? `${tag}: ${fullTitle}` : fullTitle;
         card.setAttribute('aria-label', `Watch ${ariaTitle} (opens in a new tab)`);
+        card.setAttribute('title', fullTitle);
 
 
         let thumbHTML = '';
         if (thumbUrl) {
-            thumbHTML = `<img src="${thumbUrl}" alt="${title.replace(/"/g, '&quot;')}" class="video-thumb" loading="lazy" decoding="async">`;
+            thumbHTML = `<img src="${thumbUrl}" alt="${fullTitle.replace(/"/g, '&quot;')}" class="video-thumb" loading="lazy" decoding="async">`;
         } else {
             thumbHTML = `<div class="video-thumb thumb-fallback"></div>`;
         }
@@ -288,6 +295,7 @@ copyBtns.forEach(btn => {
                     const itemType = originalLabel.replace('Copy ', '');
                     const announcementText = `${itemType} copied to clipboard`;
                     btn.setAttribute('aria-label', announcementText);
+                    btn.setAttribute('title', announcementText);
                     if (copyAnnouncement) {
                         copyAnnouncement.textContent = announcementText;
                     }
@@ -296,6 +304,7 @@ copyBtns.forEach(btn => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
                         btn.setAttribute('aria-label', originalLabel);
+                        btn.setAttribute('title', originalLabel);
                         if (copyAnnouncement) copyAnnouncement.textContent = '';
                     }, 2000);
                 }

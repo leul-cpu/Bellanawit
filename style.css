@@ -211,7 +211,8 @@ p {
     transition: var(--transition-smooth);
 }
 
-.glass-card:hover {
+.glass-card:hover,
+.glass-card:focus-within {
     box-shadow: var(--shadow-hover);
     border: var(--glass-border-hover);
     transform: translateY(-3px); /* Subtle lift */
@@ -313,7 +314,8 @@ p {
     position: relative;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a:focus-visible {
     color: var(--clr-text-main);
 }
 
@@ -389,9 +391,6 @@ p {
     text-decoration: none;
     color: var(--clr-text-muted);
     padding: 1rem 2rem;
-    display: block;
-    width: 100%;
-    text-align: center;
     transition: var(--transition-fast);
 }
 
@@ -605,7 +604,8 @@ p {
     transition: var(--transition-fast);
 }
 
-.service-card:hover .service-icon {
+.service-card:hover .service-icon,
+.service-card:focus-within .service-icon {
     background: rgba(197, 163, 101, 0.1);
     border-color: rgba(197, 163, 101, 0.3);
 }
@@ -655,7 +655,8 @@ p {
     background: linear-gradient(90deg, transparent, var(--clr-primary), transparent);
 }
 
-.featured-channel:hover {
+.featured-channel:hover,
+.featured-channel:focus-visible {
     box-shadow: 0 8px 30px rgba(197, 163, 101, 0.25);
     border-color: var(--clr-primary);
     transform: translateY(-4px);
@@ -919,7 +920,8 @@ p {
     position: relative;
 }
 
-.contact-item-wrapper:hover {
+.contact-item-wrapper:hover,
+.contact-item-wrapper:focus-within {
     border-color: var(--clr-primary);
 }
 
@@ -1243,7 +1245,8 @@ footer {
     transform: translateY(0);
 }
 
-.back-to-top:hover {
+.back-to-top:hover,
+.back-to-top:focus-visible {
     background: rgba(197, 163, 101, 0.1);
     transform: translateY(-5px);
     border-color: var(--clr-primary);

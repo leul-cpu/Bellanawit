@@ -18,6 +18,4 @@
 **Learning:** Floating action buttons with thin progress rings (like "Back to Top") require an explicit background color to maintain visibility across varying section backgrounds. Additionally, contextual tooltips (like "Copied!" badges) fail if parent containers use `overflow: hidden`; layout aesthetics should be maintained via child border-radii instead.
 **Action:** Always verify floating UI contrast against all site sections and prefer semantic radius application over overflow clipping when using relative-positioned children.
 
-## 2026-06-18 - Aesthetic Continuity through Scrollbars
-**Learning:** For boutique brand portfolios, the browser's default scrollbar can feel like a jarring "default" element in an otherwise bespoke experience. Implementing a subtle, brand-themed scrollbar using `::-webkit-scrollbar` variables (like `--clr-primary`) creates a fully immersive "contained" feel for the user.
-**Action:** Consider custom scrollbars as a low-cost, high-impact final polish for single-page visual-heavy portfolios.
+
