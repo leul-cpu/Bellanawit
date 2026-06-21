@@ -18,4 +18,7 @@
 **Learning:** Floating action buttons with thin progress rings (like "Back to Top") require an explicit background color to maintain visibility across varying section backgrounds. Additionally, contextual tooltips (like "Copied!" badges) fail if parent containers use `overflow: hidden`; layout aesthetics should be maintained via child border-radii instead.
 **Action:** Always verify floating UI contrast against all site sections and prefer semantic radius application over overflow clipping when using relative-positioned children.
 
+## 2026-06-20 - Staggered Menu Entrance Animations
+**Learning:** Entrance animations for mobile menu elements (.mobile-link, .mobile-cta) utilize 'opacity' and 'transform' transitions tied to design tokens like 'var(--transition-smooth)'; staggered delays are achieved by adding the '.stagger' class to children and ensuring 'transition-delay: inherit' is set on the animation reveal state.
+**Action:** Use existing staggered delays in the CSS by applying the '.stagger' class to sibling elements and ensuring they inherit transitions for a coordinated reveal.
 
