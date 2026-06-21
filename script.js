@@ -123,6 +123,9 @@ const handleScroll = () => {
     isScrolling = false;
 };
 
+// Initialize scroll position on load
+handleScroll();
+
 window.addEventListener('scroll', () => {
     if (!isScrolling) {
         window.requestAnimationFrame(handleScroll);
