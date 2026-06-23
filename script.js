@@ -42,22 +42,31 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Close mobile menu on link click
+// Close mobile menu on link click and manage focus
+const handleNavLinkClick = (e) => {
+    if (mobileMenu.classList.contains('active')) {
+        toggleMenu(false);
+    }
+    const href = e.currentTarget.getAttribute('href');
+    if (href && href.startsWith('#')) {
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            // Short delay to allow menu closing transition to complete
+            setTimeout(() => {
+                targetElement.focus();
+            }, 500);
+        }
+    }
+};
+
 if (logo) {
     [...mobileLinks, logo].forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                toggleMenu(false);
-            }
-        });
+        link.addEventListener('click', handleNavLinkClick);
     });
 } else {
     mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                toggleMenu(false);
-            }
-        });
+        link.addEventListener('click', handleNavLinkClick);
     });
 }
 
@@ -278,6 +287,9 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    if (logo) {
+        logo.focus();
+    }
 });
 
 // --- Copy to Clipboard ---
@@ -291,9 +303,11 @@ copyBtns.forEach(btn => {
         if (textToCopy) {
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const icon = btn.querySelector('i');
+                const wrapper = btn.closest('.contact-item-wrapper');
                 if (icon) {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
+                    if (wrapper) wrapper.classList.add('copy-success');
 
                     const itemType = originalLabel.replace('Copy ', '');
                     const announcementText = `${itemType} copied to clipboard`;
@@ -306,6 +320,7 @@ copyBtns.forEach(btn => {
                     setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
+                        if (wrapper) wrapper.classList.remove('copy-success');
                         btn.setAttribute('aria-label', originalLabel);
                         btn.setAttribute('title', originalLabel);
                         if (copyAnnouncement) copyAnnouncement.textContent = '';
