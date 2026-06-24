@@ -42,24 +42,30 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Close mobile menu on link click
-if (logo) {
-    [...mobileLinks, logo].forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                toggleMenu(false);
+// --- Enhanced Navigation & Focus Management ---
+const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a, .logo, .hero-actions a');
+
+allNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        // If mobile menu is open, close it (fix for all link types)
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+            toggleMenu(false);
+        }
+
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Programmatically focus the target section for screen readers
+                setTimeout(() => {
+                    targetElement.focus({ preventScroll: true });
+                }, 100);
             }
-        });
+        }
     });
-} else {
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                toggleMenu(false);
-            }
-        });
-    });
-}
+});
 
 // Focus trapping and Escape key listener
 document.addEventListener('keydown', (e) => {
@@ -278,6 +284,12 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    // Restore focus to logo after scrolling up
+    if (logo) {
+        setTimeout(() => {
+            logo.focus();
+        }, 500);
+    }
 });
 
 // --- Copy to Clipboard ---
@@ -294,6 +306,8 @@ copyBtns.forEach(btn => {
                 if (icon) {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
+                    const wrapper = btn.closest('.contact-item-wrapper');
+                    if (wrapper) wrapper.classList.add('copy-success');
 
                     const itemType = originalLabel.replace('Copy ', '');
                     const announcementText = `${itemType} copied to clipboard`;
@@ -306,6 +320,7 @@ copyBtns.forEach(btn => {
                     setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
+                        if (wrapper) wrapper.classList.remove('copy-success');
                         btn.setAttribute('aria-label', originalLabel);
                         btn.setAttribute('title', originalLabel);
                         if (copyAnnouncement) copyAnnouncement.textContent = '';
