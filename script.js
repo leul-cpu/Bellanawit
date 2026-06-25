@@ -278,6 +278,10 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    // Return focus to logo for keyboard users
+    if (logo) {
+        logo.focus({ preventScroll: true });
+    }
 });
 
 // --- Copy to Clipboard ---

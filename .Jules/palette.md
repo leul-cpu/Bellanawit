@@ -22,3 +22,6 @@
 **Learning:** Entrance animations for mobile menu elements (.mobile-link, .mobile-cta) utilize 'opacity' and 'transform' transitions tied to design tokens like 'var(--transition-smooth)'; staggered delays are achieved by adding the '.stagger' class to children and ensuring 'transition-delay: inherit' is set on the animation reveal state.
 **Action:** Use existing staggered delays in the CSS by applying the '.stagger' class to sibling elements and ensuring they inherit transitions for a coordinated reveal.
 
+## 2025-05-16 - Back to Top Focus Restoration
+**Learning:** For keyboard and screen reader users, the "Back to Top" button can leave focus at the bottom of the page after scrolling. Programmatically returning focus to a logical landmark at the top (like the site logo) ensures a smooth navigation flow. Using `preventScroll: true` in the `.focus()` call is essential to prevent the browser from cancelling the smooth scroll animation.
+**Action:** Always implement focus restoration to a logical top-of-page element when adding "Back to Top" functionality, and use the `preventScroll` option to preserve visual transitions.
