@@ -17,6 +17,7 @@ function toggleMenu(isOpen) {
     if (isOpen) {
         icon.classList.replace('ph-list', 'ph-x');
         hamburger.setAttribute('aria-label', 'Close Menu');
+        hamburger.setAttribute('title', 'Close Menu');
         // Cache focusable elements for focus trapping
         focusableElements = [hamburger, ...mobileMenu.querySelectorAll('a, button')];
         // Move focus to the first mobile link for better UX
@@ -27,6 +28,7 @@ function toggleMenu(isOpen) {
     } else {
         icon.classList.replace('ph-x', 'ph-list');
         hamburger.setAttribute('aria-label', 'Open Menu');
+        hamburger.setAttribute('title', 'Open Menu');
     }
 }
 
@@ -41,25 +43,8 @@ document.addEventListener('click', (e) => {
         hamburger.focus();
     }
 });
-
-// Close mobile menu on link click
-if (logo) {
-    [...mobileLinks, logo].forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                toggleMenu(false);
-            }
-        });
     });
-} else {
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                toggleMenu(false);
-            }
-        });
-    });
-}
+});
 
 // Focus trapping and Escape key listener
 document.addEventListener('keydown', (e) => {
@@ -135,7 +120,7 @@ window.addEventListener('scroll', () => {
 
 // --- ScrollSpy (Active Nav Link) ---
 const sections = document.querySelectorAll('section, header');
-const navLinksArray = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+const navLinksArray = document.querySelectorAll('.nav-links a, .mobile-nav-links a, .logo');
 
 const scrollSpyObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -278,9 +263,6 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-    // Return focus to logo for keyboard users
-    if (logo) {
-        logo.focus({ preventScroll: true });
     }
 });
 
@@ -295,9 +277,12 @@ copyBtns.forEach(btn => {
         if (textToCopy) {
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const icon = btn.querySelector('i');
+                const wrapper = btn.closest('.contact-item-wrapper');
                 if (icon) {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
+
+                    if (wrapper) wrapper.classList.add('copy-success');
 
                     const itemType = originalLabel.replace('Copy ', '');
                     const announcementText = `${itemType} copied to clipboard`;
@@ -310,6 +295,7 @@ copyBtns.forEach(btn => {
                     setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
+                        if (wrapper) wrapper.classList.remove('copy-success');
                         btn.setAttribute('aria-label', originalLabel);
                         btn.setAttribute('title', originalLabel);
                         if (copyAnnouncement) copyAnnouncement.textContent = '';
