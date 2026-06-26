@@ -22,10 +22,3 @@
 **Learning:** Entrance animations for mobile menu elements (.mobile-link, .mobile-cta) utilize 'opacity' and 'transform' transitions tied to design tokens like 'var(--transition-smooth)'; staggered delays are achieved by adding the '.stagger' class to children and ensuring 'transition-delay: inherit' is set on the animation reveal state.
 **Action:** Use existing staggered delays in the CSS by applying the '.stagger' class to sibling elements and ensuring they inherit transitions for a coordinated reveal.
 
-## 2025-06-24 - Programmatic Focus Management
-**Learning:** For single-page applications or sites with internal navigation, programmatically moving focus to target sections (using `tabindex="-1"`) after a link click is essential for screen reader users to maintain context. A slight delay (e.g., 100ms) ensures the browser has time to handle the scroll before focus is shifted.
-**Action:** Always add `tabindex="-1"` to navigation targets and implement a JavaScript listener to focus them upon click, ensuring a seamless experience for assistive technologies.
-
-## 2025-06-24 - Enhanced Clipboard Feedback
-**Learning:** Visual feedback for copy-to-clipboard actions can be made more robust by applying a success state (like a highlighted border or glow) to the entire container, rather than just the button. This provides a larger, more obvious confirmation for the user.
-**Action:** Utilize a `.copy-success` class on the parent wrapper of copy triggers to reinforce the success message visually across a larger area of the UI.

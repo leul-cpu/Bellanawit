@@ -263,11 +263,6 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-    // Restore focus to logo after scrolling up
-    if (logo) {
-        setTimeout(() => {
-            logo.focus();
-        }, 500);
     }
 });
 
