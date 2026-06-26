@@ -937,8 +937,13 @@ p {
 }
 
 .contact-item-wrapper:hover,
-.contact-item-wrapper:focus-within {
+.contact-item-wrapper:focus-within,
+.contact-item-wrapper.copy-success {
     border-color: var(--clr-primary);
+}
+
+.contact-item-wrapper.copy-success {
+    box-shadow: 0 0 15px rgba(197, 163, 101, 0.2);
 }
 
 .contact-item {

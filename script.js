@@ -17,6 +17,7 @@ function toggleMenu(isOpen) {
     if (isOpen) {
         icon.classList.replace('ph-list', 'ph-x');
         hamburger.setAttribute('aria-label', 'Close Menu');
+        hamburger.setAttribute('title', 'Close Menu');
         // Cache focusable elements for focus trapping
         focusableElements = [hamburger, ...mobileMenu.querySelectorAll('a, button')];
         // Move focus to the first mobile link for better UX
@@ -27,6 +28,7 @@ function toggleMenu(isOpen) {
     } else {
         icon.classList.replace('ph-x', 'ph-list');
         hamburger.setAttribute('aria-label', 'Open Menu');
+        hamburger.setAttribute('title', 'Open Menu');
     }
 }
 
@@ -41,29 +43,6 @@ document.addEventListener('click', (e) => {
         hamburger.focus();
     }
 });
-
-// --- Enhanced Navigation & Focus Management ---
-const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a, .logo, .hero-actions a');
-
-allNavLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        // If mobile menu is open, close it (fix for all link types)
-        if (mobileMenu && mobileMenu.classList.contains('active')) {
-            toggleMenu(false);
-        }
-
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                // Programmatically focus the target section for screen readers
-                setTimeout(() => {
-                    targetElement.focus({ preventScroll: true });
-                }, 100);
-            }
-        }
     });
 });
 
@@ -141,7 +120,7 @@ window.addEventListener('scroll', () => {
 
 // --- ScrollSpy (Active Nav Link) ---
 const sections = document.querySelectorAll('section, header');
-const navLinksArray = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+const navLinksArray = document.querySelectorAll('.nav-links a, .mobile-nav-links a, .logo');
 
 const scrollSpyObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -303,10 +282,11 @@ copyBtns.forEach(btn => {
         if (textToCopy) {
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const icon = btn.querySelector('i');
+                const wrapper = btn.closest('.contact-item-wrapper');
                 if (icon) {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
-                    const wrapper = btn.closest('.contact-item-wrapper');
+
                     if (wrapper) wrapper.classList.add('copy-success');
 
                     const itemType = originalLabel.replace('Copy ', '');
