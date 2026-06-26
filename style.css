@@ -531,10 +531,19 @@ p {
 
 .badge-1 {
     top: 10%; right: -10%;
+    animation: float 6s ease-in-out infinite;
 }
 
 .badge-2 {
     bottom: 15%; left: -10%;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: -2s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
 }
 
 /* About Section */
@@ -1218,7 +1227,9 @@ footer {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-    .hero-orb {
+    .hero-orb,
+    .badge-1,
+    .badge-2 {
         animation: none !important;
     }
 }
