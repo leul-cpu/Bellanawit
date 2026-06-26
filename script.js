@@ -17,6 +17,7 @@ function toggleMenu(isOpen) {
     if (isOpen) {
         icon.classList.replace('ph-list', 'ph-x');
         hamburger.setAttribute('aria-label', 'Close Menu');
+        hamburger.setAttribute('title', 'Close Menu');
         // Cache focusable elements for focus trapping
         focusableElements = [hamburger, ...mobileMenu.querySelectorAll('a, button')];
         // Move focus to the first mobile link for better UX
@@ -27,6 +28,7 @@ function toggleMenu(isOpen) {
     } else {
         icon.classList.replace('ph-x', 'ph-list');
         hamburger.setAttribute('aria-label', 'Open Menu');
+        hamburger.setAttribute('title', 'Open Menu');
     }
 }
 
@@ -144,7 +146,7 @@ window.addEventListener('scroll', () => {
 
 // --- ScrollSpy (Active Nav Link) ---
 const sections = document.querySelectorAll('section, header');
-const navLinksArray = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+const navLinksArray = document.querySelectorAll('.nav-links a, .mobile-nav-links a, .logo');
 
 const scrollSpyObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -287,9 +289,6 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-    if (logo) {
-        logo.focus();
-    }
 });
 
 // --- Copy to Clipboard ---
