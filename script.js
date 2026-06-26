@@ -43,6 +43,11 @@ document.addEventListener('click', (e) => {
         hamburger.focus();
     }
 });
+
+// Close mobile menu when a link is clicked
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        toggleMenu(false);
     });
 });
 
