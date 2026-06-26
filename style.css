@@ -1002,6 +1002,11 @@ p {
     animation: tooltipFade 2s ease-in-out forwards;
 }
 
+.contact-item-wrapper.copy-success {
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 15px rgba(197, 163, 101, 0.2);
+}
+
 @keyframes tooltipFade {
     0% { opacity: 0; transform: translateY(10px); }
     10% { opacity: 1; transform: translateY(0); }

@@ -43,34 +43,8 @@ document.addEventListener('click', (e) => {
         hamburger.focus();
     }
 });
-
-// Close mobile menu on link click and manage focus
-const handleNavLinkClick = (e) => {
-    if (mobileMenu.classList.contains('active')) {
-        toggleMenu(false);
-    }
-    const href = e.currentTarget.getAttribute('href');
-    if (href && href.startsWith('#')) {
-        const targetId = href.substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            // Short delay to allow menu closing transition to complete
-            setTimeout(() => {
-                targetElement.focus();
-            }, 500);
-        }
-    }
-};
-
-if (logo) {
-    [...mobileLinks, logo].forEach(link => {
-        link.addEventListener('click', handleNavLinkClick);
     });
-} else {
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', handleNavLinkClick);
-    });
-}
+});
 
 // Focus trapping and Escape key listener
 document.addEventListener('keydown', (e) => {
@@ -289,6 +263,12 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    // Restore focus to logo after scrolling up
+    if (logo) {
+        setTimeout(() => {
+            logo.focus();
+        }, 500);
+    }
 });
 
 // --- Copy to Clipboard ---
@@ -306,6 +286,7 @@ copyBtns.forEach(btn => {
                 if (icon) {
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
+
                     if (wrapper) wrapper.classList.add('copy-success');
 
                     const itemType = originalLabel.replace('Copy ', '');
