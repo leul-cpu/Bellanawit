@@ -263,7 +263,6 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-    }
 });
 
 // --- Copy to Clipboard ---
