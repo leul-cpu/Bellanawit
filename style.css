@@ -294,9 +294,16 @@ p {
     color: var(--clr-text-main);
     text-decoration: none;
     letter-spacing: -0.5px;
+    transition: transform var(--transition-smooth), color var(--transition-fast);
 }
 
 .logo span {
+    color: var(--clr-primary);
+}
+
+.logo:hover,
+.logo:focus-visible {
+    transform: scale(1.05);
     color: var(--clr-primary);
 }
 
