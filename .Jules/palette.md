@@ -22,3 +22,6 @@
 **Learning:** Entrance animations for mobile menu elements (.mobile-link, .mobile-cta) utilize 'opacity' and 'transform' transitions tied to design tokens like 'var(--transition-smooth)'; staggered delays are achieved by adding the '.stagger' class to children and ensuring 'transition-delay: inherit' is set on the animation reveal state.
 **Action:** Use existing staggered delays in the CSS by applying the '.stagger' class to sibling elements and ensuring they inherit transitions for a coordinated reveal.
 
+## 2026-06-25 - Interactive Feedback for Navigation Elements
+**Learning:** CSS 'transform' properties on flex children (e.g., the '.logo' in the nav-container) require an explicit 'display: inline-block' or 'display: block' property to ensure scaling transitions and transforms render reliably across browsers.
+**Action:** Always ensure target elements for scale transforms have a non-inline display property to maintain visual reliability during interactive states.

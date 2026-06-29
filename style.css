@@ -294,6 +294,14 @@ p {
     color: var(--clr-text-main);
     text-decoration: none;
     letter-spacing: -0.5px;
+    transition: transform var(--transition-smooth), color var(--transition-fast);
+    display: inline-block;
+}
+
+.logo:hover,
+.logo:focus-visible {
+    transform: scale(1.05);
+    color: var(--clr-primary);
 }
 
 .logo span {
@@ -349,6 +357,13 @@ p {
     font-size: 1.8rem;
     color: var(--clr-text-main);
     cursor: pointer;
+    transition: transform var(--transition-smooth), color var(--transition-fast);
+}
+
+.hamburger:hover,
+.hamburger:focus-visible {
+    transform: scale(1.1);
+    color: var(--clr-primary);
 }
 
 .mobile-menu {
