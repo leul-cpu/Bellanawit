@@ -307,6 +307,7 @@ p {
 }
 
 .logo {
+    display: inline-block;
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 800;
@@ -1265,9 +1266,23 @@ footer {
     }
     .hero-orb,
     .badge-1,
-    .badge-2 {
+    .badge-2,
+    .status-dot {
         animation: none !important;
     }
+}
+
+/* Interactive Tactility */
+.logo:active,
+.hamburger:active,
+.btn-primary:active,
+.btn-secondary:active,
+.social-icon:active,
+.back-to-top:active,
+.channel-card:active,
+.portfolio-card:active,
+.tool-chip:active {
+    transform: scale(0.97);
 }
 
 /* Touch Device Fixes */

@@ -22,3 +22,10 @@
 **Learning:** Entrance animations for mobile menu elements (.mobile-link, .mobile-cta) utilize 'opacity' and 'transform' transitions tied to design tokens like 'var(--transition-smooth)'; staggered delays are achieved by adding the '.stagger' class to children and ensuring 'transition-delay: inherit' is set on the animation reveal state.
 **Action:** Use existing staggered delays in the CSS by applying the '.stagger' class to sibling elements and ensuring they inherit transitions for a coordinated reveal.
 
+## 2026-06-21 - Unified Tactile Feedback
+**Learning:** Adding a subtle `transform: scale(0.97)` on the `:active` state of all interactive elements (buttons, cards, chips, icons) provides immediate, satisfying feedback that mimics physical interaction, making the interface feel more responsive and high-end.
+**Action:** Implement a global `:active` rule for primary interactive components to ensure consistent tactile feedback across the site.
+
+## 2026-06-21 - Decorative Element Hygiene
+**Learning:** Visual indicators like status dots or background orbs that lack semantic meaning should be explicitly hidden from screen readers using `aria-hidden="true"`. This prevents assistive technology from focusing on or announcing "empty" visual artifacts, keeping the focus on relevant content like the adjacent availability text.
+**Action:** Always audit visual-only elements for `aria-hidden` to ensure a clean, noise-free experience for screen reader users.
