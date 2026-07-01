@@ -42,6 +42,16 @@
     box-sizing: border-box;
 }
 
+::selection {
+    background: var(--clr-primary);
+    color: var(--clr-bg);
+}
+
+::-moz-selection {
+    background: var(--clr-primary);
+    color: var(--clr-bg);
+}
+
 /* Accessibility & Focus States */
 .skip-link {
     position: absolute;
@@ -260,6 +270,15 @@ p {
     transform: translateY(-2px);
 }
 
+.btn-secondary i {
+    transition: transform var(--transition-fast);
+}
+
+.btn-secondary:hover i,
+.btn-secondary:focus-visible i {
+    transform: translateX(4px);
+}
+
 /* Navigation */
 .navbar {
     position: fixed;
@@ -295,16 +314,15 @@ p {
     text-decoration: none;
     letter-spacing: -0.5px;
     transition: transform var(--transition-smooth), color var(--transition-fast);
-    display: inline-block;
+}
+
+.logo span {
+    color: var(--clr-primary);
 }
 
 .logo:hover,
 .logo:focus-visible {
     transform: scale(1.05);
-    color: var(--clr-primary);
-}
-
-.logo span {
     color: var(--clr-primary);
 }
 
@@ -995,6 +1013,7 @@ p {
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
+    position: relative;
 }
 
 .copy-btn:hover,
@@ -1015,7 +1034,8 @@ p {
     content: 'Copied!';
     position: absolute;
     top: -2.5rem;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background: #10b981;
     color: white;
     padding: 0.4rem 0.8rem;
@@ -1024,6 +1044,7 @@ p {
     font-weight: 600;
     pointer-events: none;
     animation: tooltipFade 2s ease-in-out forwards;
+    white-space: nowrap;
 }
 
 .contact-item-wrapper.copy-success {
@@ -1032,10 +1053,10 @@ p {
 }
 
 @keyframes tooltipFade {
-    0% { opacity: 0; transform: translateY(10px); }
-    10% { opacity: 1; transform: translateY(0); }
-    80% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-10px); }
+    0% { opacity: 0; transform: translate(-50%, 10px); }
+    10% { opacity: 1; transform: translate(-50%, 0); }
+    80% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -10px); }
 }
 
 .contact-icon {
