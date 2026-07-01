@@ -314,16 +314,15 @@ p {
     text-decoration: none;
     letter-spacing: -0.5px;
     transition: transform var(--transition-smooth), color var(--transition-fast);
-    display: inline-block;
+}
+
+.logo span {
+    color: var(--clr-primary);
 }
 
 .logo:hover,
 .logo:focus-visible {
     transform: scale(1.05);
-    color: var(--clr-primary);
-}
-
-.logo span {
     color: var(--clr-primary);
 }
 
