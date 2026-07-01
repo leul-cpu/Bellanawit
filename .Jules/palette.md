@@ -22,7 +22,3 @@
 **Learning:** Entrance animations for mobile menu elements (.mobile-link, .mobile-cta) utilize 'opacity' and 'transform' transitions tied to design tokens like 'var(--transition-smooth)'; staggered delays are achieved by adding the '.stagger' class to children and ensuring 'transition-delay: inherit' is set on the animation reveal state.
 **Action:** Use existing staggered delays in the CSS by applying the '.stagger' class to sibling elements and ensuring they inherit transitions for a coordinated reveal.
 
-
-## 2025-05-18 - Centering Absolute Tooltips
-**Learning:** Contextual tooltips like the 'Copied!' badge are best centered horizontally using 'left: 50%; transform: translateX(-50%);'. This requires the parent to have 'position: relative' and associated animations to explicitly preserve the horizontal translation to avoid jumping.
-**Action:** When implementing tooltips, always set the parent to 'relative' and ensure @keyframes include the centering transform alongside any vertical movement.
