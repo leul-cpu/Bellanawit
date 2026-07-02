@@ -29,3 +29,11 @@
 ## 2026-06-21 - Decorative Element Hygiene
 **Learning:** Visual indicators like status dots or background orbs that lack semantic meaning should be explicitly hidden from screen readers using `aria-hidden="true"`. This prevents assistive technology from focusing on or announcing "empty" visual artifacts, keeping the focus on relevant content like the adjacent availability text.
 **Action:** Always audit visual-only elements for `aria-hidden` to ensure a clean, noise-free experience for screen reader users.
+
+## 2027-01-15 - Programmatic Navigation Relationships
+**Learning:** For accessible navigation menus, establishing a programmatic connection between the trigger and the container (using `aria-controls` on the button and a matching `id` on the menu) ensures that screen reader users can correctly identify and navigate to the controlled content.
+**Action:** Always pair mobile menu triggers with their target containers using `aria-controls` and `id`.
+
+## 2027-01-15 - Status as Call-to-Action
+**Learning:** Converting status-related badges (like "Available for Work") into functional anchor links that point to relevant CTAs (like a contact section) reduces friction and provides a more intuitive path for users motivated by the status information.
+**Action:** Look for opportunities to turn informational status indicators into interactive shortcuts for key user journeys.

@@ -55,12 +55,12 @@
                 <a href="#portfolio">Portfolio</a>
             </div>
             <a href="#contact" class="btn-primary desktop-cta">Let's Talk</a>
-            <button class="hamburger" aria-label="Open menu" title="Open menu" aria-expanded="false">
+            <button class="hamburger" aria-label="Open menu" title="Open menu" aria-expanded="false" aria-controls="mobile-nav-menu">
                 <i class="ph ph-list" aria-hidden="true"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div class="mobile-menu" id="mobile-nav-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
             <div class="mobile-nav-links">
                 <a href="#about" class="mobile-link stagger">About</a>
                 <a href="#services" class="mobile-link stagger">Services</a>
@@ -81,9 +81,9 @@
             </div>
             <div class="container hero-content">
                 <div class="hero-text fade-up">
-                    <div class="badge">
+                    <a href="#contact" class="badge" aria-label="Available for work - Contact me">
                         <span class="status-dot" aria-hidden="true"></span> Available for Work
-                    </div>
+                    </a>
                     <h1>Turning Moments into <span class="gradient-text">Attention-Grabbing Stories</span></h1>
                     <p class="subtitle">Creating eye-catching event promotion content and elevating personal brands
                         through
