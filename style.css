@@ -479,6 +479,16 @@ p {
     font-weight: 500;
     color: var(--clr-highlight);
     margin-bottom: 1.5rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.badge:hover,
+.badge:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--clr-primary);
+    transform: translateY(-2px);
+    color: var(--clr-text-main);
 }
 
 .status-dot {
@@ -1281,7 +1291,8 @@ footer {
 .back-to-top:active,
 .channel-card:active,
 .portfolio-card:active,
-.tool-chip:active {
+.tool-chip:active,
+.badge:active {
     transform: scale(0.97);
 }
 
