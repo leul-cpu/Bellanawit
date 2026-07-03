@@ -34,6 +34,10 @@
 **Learning:** For accessible navigation menus, establishing a programmatic connection between the trigger and the container (using `aria-controls` on the button and a matching `id` on the menu) ensures that screen reader users can correctly identify and navigate to the controlled content.
 **Action:** Always pair mobile menu triggers with their target containers using `aria-controls` and `id`.
 
+## 2026-07-03 - Robust Temporary UI Feedback
+**Learning:** Managing temporary UI states (like clipboard feedback) requires explicit timeout tracking (e.g., using a `Map`) to prevent race conditions or "stuck" states when users interact rapidly. Combined with micro-animations (like a "pop" scale), this makes the interaction feel both robust and delightful.
+**Action:** Use a `Map` or similar registry to track and clear pending timeouts for any element-specific temporary UI feedback loops.
+
 ## 2027-01-15 - Status as Call-to-Action
 **Learning:** Converting status-related badges (like "Available for Work") into functional anchor links that point to relevant CTAs (like a contact section) reduces friction and provides a more intuitive path for users motivated by the status information.
 **Action:** Look for opportunities to turn informational status indicators into interactive shortcuts for key user journeys.
