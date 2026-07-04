@@ -47,7 +47,12 @@ document.addEventListener('click', (e) => {
 // Close mobile menu when a link is clicked
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
+        const targetId = link.getAttribute('href');
         toggleMenu(false);
+        if (targetId && targetId.startsWith('#')) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) targetEl.focus();
+        }
     });
 });
 
@@ -268,11 +273,14 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    const hero = document.getElementById('hero');
+    if (hero) hero.focus();
 });
 
 // --- Copy to Clipboard ---
 const copyBtns = document.querySelectorAll('.copy-btn');
 const copyAnnouncement = document.getElementById('copy-announcement');
+const copyTimeouts = new Map();
 
 copyBtns.forEach(btn => {
     const originalLabel = btn.getAttribute('aria-label');
@@ -283,6 +291,11 @@ copyBtns.forEach(btn => {
                 const icon = btn.querySelector('i');
                 const wrapper = btn.closest('.contact-item-wrapper');
                 if (icon) {
+                    // Clear existing timeout if button is clicked rapidly
+                    if (copyTimeouts.has(btn)) {
+                        clearTimeout(copyTimeouts.get(btn));
+                    }
+
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
 
@@ -296,14 +309,17 @@ copyBtns.forEach(btn => {
                         copyAnnouncement.textContent = announcementText;
                     }
 
-                    setTimeout(() => {
+                    const timeoutId = setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
                         if (wrapper) wrapper.classList.remove('copy-success');
                         btn.setAttribute('aria-label', originalLabel);
                         btn.setAttribute('title', originalLabel);
                         if (copyAnnouncement) copyAnnouncement.textContent = '';
+                        copyTimeouts.delete(btn);
                     }, 2000);
+
+                    copyTimeouts.set(btn, timeoutId);
                 }
             }).catch(err => console.error('Failed to copy: ', err));
         }
