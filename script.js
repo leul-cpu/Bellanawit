@@ -268,6 +268,29 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    // Restore focus to the hero section for keyboard/screen reader users
+    const hero = document.getElementById('hero');
+    if (hero) {
+        setTimeout(() => {
+            hero.focus({ preventScroll: true });
+        }, 800);
+    }
+});
+
+// --- Internal Navigation Focus Management ---
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function () {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            // Delay focus slightly to allow smooth scroll to reach the section
+            setTimeout(() => {
+                targetElement.focus({ preventScroll: true });
+            }, 800);
+        }
+    });
 });
 
 // --- Copy to Clipboard ---
