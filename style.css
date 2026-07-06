@@ -90,6 +90,10 @@
     outline-offset: 4px;
 }
 
+[tabindex="-1"]:focus {
+    outline: none;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;

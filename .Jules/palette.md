@@ -37,3 +37,7 @@
 ## 2027-01-15 - Status as Call-to-Action
 **Learning:** Converting status-related badges (like "Available for Work") into functional anchor links that point to relevant CTAs (like a contact section) reduces friction and provides a more intuitive path for users motivated by the status information.
 **Action:** Look for opportunities to turn informational status indicators into interactive shortcuts for key user journeys.
+
+## 2027-01-20 - Global Internal Navigation Focus Management
+**Learning:** In single-page applications with smooth scrolling, the visual position changes but the keyboard focus remains on the trigger element. Programmatically moving focus to the target section (using a delay to sync with the scroll animation) ensures a seamless and accessible experience for keyboard and screen reader users.
+**Action:** Always implement focus management for internal anchor links and "Back to Top" buttons by programmatically focusing the destination with `preventScroll: true` after the scroll completes.
