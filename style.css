@@ -1046,6 +1046,9 @@ p {
     color: #10b981;
 }
 
+.copy-btn.copied i {
+}
+
 .copy-btn.copied::before {
     content: 'Copied!';
     position: absolute;

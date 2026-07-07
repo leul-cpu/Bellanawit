@@ -47,7 +47,12 @@ document.addEventListener('click', (e) => {
 // Close mobile menu when a link is clicked
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
+        const targetId = link.getAttribute('href');
         toggleMenu(false);
+        if (targetId && targetId.startsWith('#')) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) targetEl.focus();
+        }
     });
 });
 
@@ -104,9 +109,8 @@ const handleScroll = () => {
 
     // Scroll Progress Ring
     if (progressCircle) {
-        const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const scrollPercent = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
         progressCircle.style.strokeDashoffset = 100 - scrollPercent;
     }
 
@@ -268,34 +272,12 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-    // Restore focus to the hero section for keyboard/screen reader users
-    const hero = document.getElementById('hero');
-    if (hero) {
-        setTimeout(() => {
-            hero.focus({ preventScroll: true });
-        }, 800);
-    }
-});
-
-// --- Internal Navigation Focus Management ---
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function () {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            // Delay focus slightly to allow smooth scroll to reach the section
-            setTimeout(() => {
-                targetElement.focus({ preventScroll: true });
-            }, 800);
-        }
-    });
 });
 
 // --- Copy to Clipboard ---
 const copyBtns = document.querySelectorAll('.copy-btn');
 const copyAnnouncement = document.getElementById('copy-announcement');
+const copyTimeouts = new Map();
 
 copyBtns.forEach(btn => {
     const originalLabel = btn.getAttribute('aria-label');
@@ -306,6 +288,11 @@ copyBtns.forEach(btn => {
                 const icon = btn.querySelector('i');
                 const wrapper = btn.closest('.contact-item-wrapper');
                 if (icon) {
+
+                    if (copyTimeouts.has(btn)) {
+                        clearTimeout(copyTimeouts.get(btn));
+                    }
+
                     icon.classList.replace('ph-copy', 'ph-check');
                     btn.classList.add('copied');
 
@@ -319,14 +306,17 @@ copyBtns.forEach(btn => {
                         copyAnnouncement.textContent = announcementText;
                     }
 
-                    setTimeout(() => {
+                    const timeoutId = setTimeout(() => {
                         icon.classList.replace('ph-check', 'ph-copy');
                         btn.classList.remove('copied');
                         if (wrapper) wrapper.classList.remove('copy-success');
                         btn.setAttribute('aria-label', originalLabel);
                         btn.setAttribute('title', originalLabel);
                         if (copyAnnouncement) copyAnnouncement.textContent = '';
+                        copyTimeouts.delete(btn);
                     }, 2000);
+
+                    copyTimeouts.set(btn, timeoutId);
                 }
             }).catch(err => console.error('Failed to copy: ', err));
         }

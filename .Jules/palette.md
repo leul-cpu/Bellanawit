@@ -34,10 +34,12 @@
 **Learning:** For accessible navigation menus, establishing a programmatic connection between the trigger and the container (using `aria-controls` on the button and a matching `id` on the menu) ensures that screen reader users can correctly identify and navigate to the controlled content.
 **Action:** Always pair mobile menu triggers with their target containers using `aria-controls` and `id`.
 
+## 2026-07-03 - Robust Temporary UI Feedback
+**Learning:** Managing temporary UI states (like clipboard feedback) requires explicit timeout tracking (e.g., using a `Map`) to prevent race conditions or "stuck" states when users interact rapidly. Combined with micro-animations (like a "pop" scale), this makes the interaction feel both robust and delightful.
+**Action:** Use a `Map` or similar registry to track and clear pending timeouts for any element-specific temporary UI feedback loops.
+
 ## 2027-01-15 - Status as Call-to-Action
 **Learning:** Converting status-related badges (like "Available for Work") into functional anchor links that point to relevant CTAs (like a contact section) reduces friction and provides a more intuitive path for users motivated by the status information.
 **Action:** Look for opportunities to turn informational status indicators into interactive shortcuts for key user journeys.
 
-## 2027-01-20 - Synchronizing Scroll and Programmatic Focus
-**Learning:** For a truly accessible single-page navigation experience, visual smooth scrolling must be paired with programmatic focus management. Moving focus to the target section (with a slight delay to allow for the scroll) ensures that keyboard and screen reader users aren't "lost" after a navigation event, while suppressing focus outlines on the sections themselves prevents visual clutter.
-**Action:** Always implement programmatic `.focus()` on internal navigation targets, coupled with CSS to hide outlines on non-interactive focused elements.
+
