@@ -272,6 +272,29 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    // Move focus back to hero for keyboard users
+    const hero = document.getElementById('hero');
+    if (hero) {
+        setTimeout(() => {
+            hero.focus({ preventScroll: true });
+        }, 800);
+    }
+});
+
+// --- Internal Navigation Focus Management ---
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+
+        const target = document.querySelector(href);
+        if (target) {
+            // Wait for smooth scroll to finish before moving focus
+            setTimeout(() => {
+                target.focus({ preventScroll: true });
+            }, 800);
+        }
+    });
 });
 
 // --- Copy to Clipboard ---
