@@ -47,7 +47,12 @@ document.addEventListener('click', (e) => {
 // Close mobile menu when a link is clicked
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
+        const targetId = link.getAttribute('href');
         toggleMenu(false);
+        if (targetId && targetId.startsWith('#')) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) targetEl.focus();
+        }
     });
 });
 
@@ -267,6 +272,8 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+    const hero = document.getElementById('hero');
+    if (hero) hero.focus();
 });
 
 // --- Copy to Clipboard ---
@@ -283,7 +290,7 @@ copyBtns.forEach(btn => {
                 const icon = btn.querySelector('i');
                 const wrapper = btn.closest('.contact-item-wrapper');
                 if (icon) {
-                    // Clear existing timeout if any
+
                     if (copyTimeouts.has(btn)) {
                         clearTimeout(copyTimeouts.get(btn));
                     }

@@ -41,3 +41,7 @@
 ## 2027-01-15 - Status as Call-to-Action
 **Learning:** Converting status-related badges (like "Available for Work") into functional anchor links that point to relevant CTAs (like a contact section) reduces friction and provides a more intuitive path for users motivated by the status information.
 **Action:** Look for opportunities to turn informational status indicators into interactive shortcuts for key user journeys.
+
+## 2025-05-16 - Map-Based Timeout Management for UI Feedback
+**Learning:** For interactive feedback elements that can be triggered rapidly (like clipboard copy buttons), using a simple `setTimeout` often leads to state conflicts where one timeout clears another button's state or prematurely resets a new action. Using a `Map` to track and clear timeouts on a per-element basis ensures UI state remains consistent and predictable during high-frequency interaction.
+**Action:** Implement `copyTimeouts = new Map()` to store and clear individual timeout IDs for each interactive trigger.
