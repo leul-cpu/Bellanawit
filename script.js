@@ -272,8 +272,6 @@ backToTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-    const hero = document.getElementById('hero');
-    if (hero) hero.focus();
 });
 
 // --- Copy to Clipboard ---

@@ -90,6 +90,11 @@
     outline-offset: 4px;
 }
 
+/* Suppress focus outline for programmatically focused sections while keeping it for interactive elements */
+[tabindex="-1"]:focus {
+    outline: none;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
