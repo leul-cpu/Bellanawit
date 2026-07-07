@@ -1042,7 +1042,6 @@ p {
 }
 
 .copy-btn.copied i {
-    transform: scale(1.2);
 }
 
 .copy-btn.copied::before {

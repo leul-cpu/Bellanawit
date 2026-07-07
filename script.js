@@ -109,9 +109,8 @@ const handleScroll = () => {
 
     // Scroll Progress Ring
     if (progressCircle) {
-        const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const scrollPercent = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
         progressCircle.style.strokeDashoffset = 100 - scrollPercent;
     }
 
@@ -291,7 +290,7 @@ copyBtns.forEach(btn => {
                 const icon = btn.querySelector('i');
                 const wrapper = btn.closest('.contact-item-wrapper');
                 if (icon) {
-                    // Clear existing timeout if button is clicked rapidly
+
                     if (copyTimeouts.has(btn)) {
                         clearTimeout(copyTimeouts.get(btn));
                     }
