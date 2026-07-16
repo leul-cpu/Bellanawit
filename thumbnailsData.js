@@ -1,11 +1,11 @@
 const THUMBNAILS_DATA = {
   "https://vt.tiktok.com/ZSXDvSJfA/": {
     "thumb": "thumbnails/thumb_ZSXDvSJfA.jpg",
-    "title": ""
+    "title": "🌿 Eat Healthy. Feel Great. Relax in Comfort. ☕ Welcome to Madiga Cafe your cozy, safe, and welcoming spot to enjoy fresh, nutritious meals made with quality ingredients. Whether you're catching up with friends, working remotely, or simply treating yourself, we've created the perfect atmosphere for every moment. 📍 Branch 1: Bole Japan, next to Igloo Ice Cream 📍 Branch 2: Bole Atlas, Grace Plaza Visit Madiga Café today and discover healthy food in a warm and relaxing environment. We can't wait to serve you! 🍋‍🟩 #MarigaCafe #HealthyMeals #EatFresh #HealthyLifestyle #creatorsearchinsights"
   },
   "https://vt.tiktok.com/ZSXD37evb/": {
     "thumb": "thumbnails/thumb_ZSXD37evb.jpg",
-    "title": ""
+    "title": "As mostly requested Iam back with department suggestion videos the comment section is yours comment your department and let's get into this 🤩🤩📣📣#fyp #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #viral #urgent #trend"
   },
   "https://vt.tiktok.com/ZSxN1ojmp/": {
     "thumb": "thumbnails/thumb_new_2.jpg",
