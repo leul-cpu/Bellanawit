@@ -820,6 +820,12 @@ p {
     transition: var(--transition-smooth);
 }
 
+/* Shift thumbnails down for new videos so subject is visible */
+a[href="https://vt.tiktok.com/ZSXDvSJfA/"] .video-thumb,
+a[href="https://vt.tiktok.com/ZSXD37evb/"] .video-thumb {
+    object-position: center 30%;
+}
+
 .thumb-fallback {
     display: grid;
     place-items: center;

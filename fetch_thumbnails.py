@@ -7,7 +7,9 @@ new_videos = [
     ("https://vt.tiktok.com/ZSxNJ8VNH/", "thumbnails/thumb_new_1.jpg"),
     ("https://vt.tiktok.com/ZSxN1ojmp/", "thumbnails/thumb_new_2.jpg"),
     ("https://vt.tiktok.com/ZSxNF3poH/", "thumbnails/thumb_new_3.jpg"),
-    ("https://vt.tiktok.com/ZSQJv829J/", "thumbnails/thumb_sheva_toys.jpg")
+    ("https://vt.tiktok.com/ZSQJv829J/", "thumbnails/thumb_sheva_toys.jpg"),
+    ("https://vt.tiktok.com/ZSXDvSJfA/", "thumbnails/thumb_ZSXDvSJfA.jpg"),
+    ("https://vt.tiktok.com/ZSXD37evb/", "thumbnails/thumb_ZSXD37evb.jpg")
 ]
 
 def fetch_thumbnails():

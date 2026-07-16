@@ -1,11 +1,11 @@
 const THUMBNAILS_DATA = {
-  "https://vt.tiktok.com/ZSQJv829J/": {
-    "thumb": "thumbnails/thumb_sheva_toys.jpg",
-    "title": "Coming soon 🤩 sheva toys 🧸 stay tuned #comingsoon #toystore #kids #bole #creatorsearchinsights"
+  "https://vt.tiktok.com/ZSXDvSJfA/": {
+    "thumb": "thumbnails/thumb_ZSXDvSJfA.jpg",
+    "title": ""
   },
-  "https://vt.tiktok.com/ZSxNFcpvU/": {
-    "thumb": "thumbnails/thumb_16.jpg",
-    "title": "አልሚ ምርቶች በኤክስፖርት ስታንዳርድ የሚመረቱት የጤፍ ዱቄት፤ ቆሎ፤ ዳቦ ቆሎ፤ ሽሮ፤ በርበሬ፤ ቆጮ እንዲሁም  45 በላይ የተለያዩ ምርቶችን አምርቶ በሀገር ውስጥ ገበያ በተጨማሪም በአሜሪካ እንዲሁም በካናዳ በደምበኞቻችን ተወዳጅነትን አትርፏል::   በተጨማሪም በኢሮፕ, በአውስትራሊ እንዲሁም በተለያዩ የአለም ሀገራት ተደራሽነታችንን ለማስፋት ዝግጅታችንን አጠናቀን ጨርሰናል በመሆኑም አከፋፋዮች እንዲሁም አስመጭዎች ከኛ ጋር አብራችሁን እንድትሰሩ ጥሪያችን ነው:: WhatsApp 👇  +251 97 947 5653 Email 👇 almiproducts1@gmail.com Abaystrading@gmail.com"
+  "https://vt.tiktok.com/ZSXD37evb/": {
+    "thumb": "thumbnails/thumb_ZSXD37evb.jpg",
+    "title": ""
   },
   "https://vt.tiktok.com/ZSxN1ojmp/": {
     "thumb": "thumbnails/thumb_new_2.jpg",
@@ -14,6 +14,14 @@ const THUMBNAILS_DATA = {
   "https://vt.tiktok.com/ZSxNFETHb/": {
     "thumb": "thumbnails/thumb_15.jpg",
     "title": "አልሚ የጤፍ ዱቄት የምትገዙት የጤፍ ዱቄት ንጹ እና ጥራቱን የጠበቀ መሆኑን እንዴት ታውቃላችሁ??   https://www.almiproduct.com/ ምርቶቻችን በወኪሎቻችን በአሜሪካ Selamta Llc እንዲሁም በካናዳ Easter important export በኩል ያገኙናል። 🇺🇸 በአሜሪካ  በ Selmta LLC በኩል ያገኙናል፡፡             📞 +1 (404)-750-4162             🌍https://www.selamtausa.com 🇨🇦 በካናዳ በኢስት ስታር በኩል ያገኙናል፡፡                     📞(416-750-1083)                    Email: henok@eaststar.ca"
+  },
+  "https://vt.tiktok.com/ZSQJv829J/": {
+    "thumb": "thumbnails/thumb_sheva_toys.jpg",
+    "title": "Coming soon 🤩 sheva toys 🧸 stay tuned #comingsoon #toystore #kids #bole #creatorsearchinsights"
+  },
+  "https://vt.tiktok.com/ZSxNFcpvU/": {
+    "thumb": "thumbnails/thumb_16.jpg",
+    "title": "አልሚ ምርቶች በኤክስፖርት ስታንዳርድ የሚመረቱት የጤፍ ዱቄት፤ ቆሎ፤ ዳቦ ቆሎ፤ ሽሮ፤ በርበሬ፤ ቆጮ እንዲሁም  45 በላይ የተለያዩ ምርቶችን አምርቶ በሀገር ውስጥ ገበያ በተጨማሪም በአሜሪካ እንዲሁም በካናዳ በደምበኞቻችን ተወዳጅነትን አትርፏል::   በተጨማሪም በኢሮፕ, በአውስትራሊ እንዲሁም በተለያዩ የአለም ሀገራት ተደራሽነታችንን ለማስፋት ዝግጅታችንን አጠናቀን ጨርሰናል በመሆኑም አከፋፋዮች እንዲሁም አስመጭዎች ከኛ ጋር አብራችሁን እንድትሰሩ ጥሪያችን ነው:: WhatsApp 👇  +251 97 947 5653 Email 👇 almiproducts1@gmail.com Abaystrading@gmail.com"
   },
   "https://vt.tiktok.com/ZSxNF3poH/": {
     "thumb": "thumbnails/thumb_new_3.jpg",
